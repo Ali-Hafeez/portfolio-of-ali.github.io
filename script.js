@@ -1,4 +1,23 @@
 /* ==========================================
+   THEME TOGGLE
+   ========================================== */
+(function () {
+  const html = document.documentElement;
+  const btn = document.getElementById('themeToggle');
+  const saved = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  if (saved === 'light' || (!saved && !prefersDark)) {
+    html.classList.add('light');
+  }
+
+  btn.addEventListener('click', () => {
+    html.classList.toggle('light');
+    localStorage.setItem('theme', html.classList.contains('light') ? 'light' : 'dark');
+  });
+})();
+
+/* ==========================================
    CURSOR
    ========================================== */
 const cursor = document.getElementById('cursor');

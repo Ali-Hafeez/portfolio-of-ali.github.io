@@ -27,6 +27,26 @@
   font-size: 16px;
 }
 
+html.light {
+  --bg: #f5f5f7;
+  --bg-2: #ffffff;
+  --bg-3: #e8e8ed;
+  --surface: rgba(0,0,0,0.04);
+  --surface-hover: rgba(0,0,0,0.07);
+  --border: rgba(0,0,0,0.08);
+  --border-hover: rgba(0,0,0,0.16);
+  --text: #1d1d1f;
+  --text-secondary: rgba(29,29,31,0.65);
+  --text-tertiary: rgba(29,29,31,0.4);
+  --blue: #0071e3;
+  --blue-light: #0071e3;
+  --purple: #9b34d8;
+  --green: #1d8a3a;
+  --cyan: #007aac;
+}
+
+html { transition: background 0.3s, color 0.3s; }
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -56,6 +76,7 @@ img, svg { display: block; }
   transition: transform 0.15s ease, border-color 0.2s, background 0.2s, width 0.2s, height 0.2s;
   mix-blend-mode: difference;
 }
+html.light .cursor { border-color: rgba(0,0,0,0.4); }
 .cursor-dot {
   width: 6px; height: 6px;
   background: white;
@@ -67,6 +88,7 @@ img, svg { display: block; }
   transform: translate(-50%, -50%);
   transition: transform 0.05s ease;
 }
+html.light .cursor-dot { background: #1d1d1f; }
 .cursor.hover { transform: translate(-50%, -50%) scale(1.8); border-color: var(--blue-light); background: rgba(0,113,227,0.1); }
 
 @media (hover: none) { .cursor, .cursor-dot { display: none; } }
@@ -180,6 +202,23 @@ img, svg { display: block; }
 .nav-burger.open span:nth-child(2) { opacity: 0; }
 .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+.theme-toggle {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-secondary);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+.theme-toggle:hover { border-color: var(--border-hover); color: var(--text); background: var(--surface-hover); transform: scale(1.08); }
+.icon-sun { display: none; }
+.icon-moon { display: block; }
+html.light .icon-sun { display: block; }
+html.light .icon-moon { display: none; }
+
 /* Mobile menu */
 .mobile-menu {
   position: fixed;
@@ -254,6 +293,9 @@ img, svg { display: block; }
   33% { transform: translate(30px,-20px) scale(1.05); }
   66% { transform: translate(-20px,30px) scale(0.97); }
 }
+
+html.light .orb { opacity: 0.12; filter: blur(100px); }
+html.light #starCanvas { opacity: 0.15; }
 
 .hero-content {
   position: relative;
