@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ali Muhammad Hafeez — Cloud & DevOps Engineer</title>
+  <meta name="description" content="Cloud Infrastructure Engineer & Full-Stack Developer based in London. Specialising in AWS, Azure, DevOps, and resilient systems." />
+  <meta property="og:title" content="Ali Muhammad Hafeez — Cloud & DevOps Engineer" />
+  <meta property="og:description" content="Cloud Infrastructure Engineer & Full-Stack Developer based in London." />
+  <meta property="og:url" content="https://ali-hafeez.xyz" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- Nav -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">AMH</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
+      </ul>
+      <button class="nav-burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <canvas id="starCanvas"></canvas>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge reveal">
+        <span class="badge-dot"></span>
+        Available for full-time roles
+      </div>
+      <h1 class="hero-name reveal">
+        <span class="name-line">Ali Muhammad</span>
+        <span class="name-line gradient-text">Hafeez</span>
+      </h1>
+      <p class="hero-title reveal">Cloud Infrastructure Engineer &amp; Full-Stack Developer</p>
+      <p class="hero-location reveal">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        London, UK
+      </p>
+      <div class="hero-links reveal">
+        <a href="mailto:alimuhammadhafeez@gmail.com" class="hero-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Email
+        </a>
+        <a href="https://linkedin.com/in/ali-hafeez" target="_blank" rel="noopener" class="hero-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/Ali-Hafeez" target="_blank" rel="noopener" class="hero-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+        <a href="tel:+4407424412304" class="hero-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call
+        </a>
+      </div>
+      <a href="#about" class="scroll-hint reveal">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">About</span>
+        <h2 class="section-title">Building resilient systems<br/><span class="gradient-text">at every layer.</span></h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>A driven Computer Science graduate (pending) and Associate Cloud Infrastructure Engineer with hands-on commercial experience across cloud infrastructure, full-stack development, networking, and technical diagnostics.</p>
+          <p>Passionate about DevOps, Infrastructure as Code, and building resilient systems. All university lectures completed — averaging First-Class (73%+) — and available for immediate full-time employment.</p>
+          <div class="about-stats">
+            <div class="stat">
+              <span class="stat-number">4+</span>
+              <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">10+</span>
+              <span class="stat-label">Roles & Projects</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">73%+</span>
+              <span class="stat-label">First Class Avg.</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">5</span>
+              <span class="stat-label">Certifications</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-card reveal">
+          <div class="glass-card profile-card">
+            <div class="profile-icon">
+              <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="40" cy="40" r="40" fill="url(#grad1)"/>
+                <circle cx="40" cy="30" r="14" fill="rgba(255,255,255,0.9)"/>
+                <ellipse cx="40" cy="68" rx="22" ry="14" fill="rgba(255,255,255,0.9)"/>
+                <defs>
+                  <linearGradient id="grad1" x1="0" y1="0" x2="80" y2="80">
+                    <stop offset="0%" stop-color="#0071e3"/>
+                    <stop offset="100%" stop-color="#bf5af2"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <h3>Ali Muhammad Hafeez</h3>
+            <p class="profile-role">Cloud & DevOps Engineer</p>
+            <div class="profile-tags">
+              <span class="tag">AWS</span>
+              <span class="tag">Azure</span>
+              <span class="tag">Linux</span>
+              <span class="tag">Python</span>
+              <span class="tag">React</span>
+              <span class="tag">CI/CD</span>
+            </div>
+            <a href="mailto:alimuhammadhafeez@gmail.com" class="btn-primary">Get In Touch</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="section section-dark" id="skills">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Skills</span>
+        <h2 class="section-title">The full stack,<br/><span class="gradient-text">from silicon to cloud.</span></h2>
+      </div>
+      <div class="skills-grid">
+
+        <div class="skill-category reveal">
+          <div class="skill-card glass-card">
+            <div class="skill-icon">
+              <svg viewBox="0 0 48 48" fill="none"><rect x="4" y="4" width="40" height="40" rx="8" fill="url(#sg1)"/><path d="M16 24h16M24 16v16" stroke="white" stroke-width="3" stroke-linecap="round"/><defs><linearGradient id="sg1" x1="0" y1="0" x2="48" y2="48"><stop stop-color="#0071e3"/><stop offset="1" stop-color="#00d4ff"/></linearGradient></defs></svg>
+            </div>
+            <h3>Cloud & DevOps</h3>
+            <div class="skill-tags">
+              <span class="skill-pill">AWS EC2</span>
+              <span class="skill-pill">AWS S3</span>
+              <span class="skill-pill">AWS RDS</span>
+              <span class="skill-pill">Microsoft Azure</span>
+              <span class="skill-pill">CI/CD Pipelines</span>
+              <span class="skill-pill">Git</span>
+              <span class="skill-pill">Infrastructure as Code</span>
+              <span class="skill-pill">Chaos Engineering</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category reveal">
+          <div class="skill-card glass-card">
+            <div class="skill-icon">
+              <svg viewBox="0 0 48 48" fill="none"><rect x="4" y="4" width="40" height="40" rx="8" fill="url(#sg2)"/><path d="M8 16h32M8 24h20M8 32h14" stroke="white" stroke-width="3" stroke-linecap="round"/><defs><linearGradient id="sg2" x1="0" y1="0" x2="48" y2="48"><stop stop-color="#30d158"/><stop offset="1" stop-color="#00d4ff"/></linearGradient></defs></svg>
+            </div>
+            <h3>Networking & Security</h3>
+            <div class="skill-tags">
+              <span class="skill-pill">TCP/IP</span>
+              <span class="skill-pill">Network Cabling</span>
+              <span class="skill-pill">CCTV Diagnostics</span>
+              <span class="skill-pill">OOB Management</span>
+              <span class="skill-pill">Layer 1/2 Troubleshooting</span>
+              <span class="skill-pill">Wireshark</span>
+              <span class="skill-pill">Incident Response</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category reveal">
+          <div class="skill-card glass-card">
+            <div class="skill-icon">
+              <svg viewBox="0 0 48 48" fill="none"><rect x="4" y="4" width="40" height="40" rx="8" fill="url(#sg3)"/><path d="M14 18l-6 6 6 6M34 18l6 6-6 6M28 14l-8 20" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="sg3" x1="0" y1="0" x2="48" y2="48"><stop stop-color="#bf5af2"/><stop offset="1" stop-color="#ff375f"/></linearGradient></defs></svg>
+            </div>
+            <h3>Programming</h3>
+            <div class="skill-tags">
+              <span class="skill-pill">Python</span>
+              <span class="skill-pill">Java</span>
+              <span class="skill-pill">JavaScript</span>
+              <span class="skill-pill">React</span>
+              <span class="skill-pill">Vite</span>
+              <span class="skill-pill">HTML/CSS</span>
+              <span class="skill-pill">Firebase</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category reveal">
+          <div class="skill-card glass-card">
+            <div class="skill-icon">
+              <svg viewBox="0 0 48 48" fill="none"><rect x="4" y="4" width="40" height="40" rx="8" fill="url(#sg4)"/><rect x="10" y="14" width="28" height="20" rx="3" stroke="white" stroke-width="3"/><path d="M18 34v4M30 34v4M14 38h20" stroke="white" stroke-width="3" stroke-linecap="round"/><defs><linearGradient id="sg4" x1="0" y1="0" x2="48" y2="48"><stop stop-color="#ff9f0a"/><stop offset="1" stop-color="#ff375f"/></linearGradient></defs></svg>
+            </div>
+            <h3>Operating Systems</h3>
+            <div class="skill-tags">
+              <span class="skill-pill">Linux (RedHat/CentOS)</span>
+              <span class="skill-pill">Ubuntu</span>
+              <span class="skill-pill">Debian</span>
+              <span class="skill-pill">Kali Linux</span>
+              <span class="skill-pill">Windows Server</span>
+              <span class="skill-pill">macOS</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category reveal">
+          <div class="skill-card glass-card">
+            <div class="skill-icon">
+              <svg viewBox="0 0 48 48" fill="none"><rect x="4" y="4" width="40" height="40" rx="8" fill="url(#sg5)"/><path d="M24 10v6M24 32v6M10 24h6M32 24h6" stroke="white" stroke-width="3" stroke-linecap="round"/><circle cx="24" cy="24" r="6" stroke="white" stroke-width="3"/><defs><linearGradient id="sg5" x1="0" y1="0" x2="48" y2="48"><stop stop-color="#0071e3"/><stop offset="1" stop-color="#30d158"/></linearGradient></defs></svg>
+            </div>
+            <h3>Methodologies</h3>
+            <div class="skill-tags">
+              <span class="skill-pill">ITIL v4</span>
+              <span class="skill-pill">Agile / Scrum</span>
+              <span class="skill-pill">Confluence</span>
+              <span class="skill-pill">Incident Response</span>
+              <span class="skill-pill">Change Management</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Experience</span>
+        <h2 class="section-title">A track record<br/><span class="gradient-text">built in the field.</span></h2>
+      </div>
+      <div class="timeline">
+
+        <div class="timeline-item reveal">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content glass-card">
+            <div class="timeline-header">
+              <div>
+                <h3>Associate Cloud Infrastructure Engineer</h3>
+                <p class="timeline-company">HM Revenue &amp; Customs (HMRC)</p>
+              </div>
+              <span class="timeline-date">Dec 2024 – Sept 2025</span>
+            </div>
+            <ul class="timeline-list">
+              <li>Provisioned and managed scalable cloud infrastructure across AWS and Azure, prioritising reliability, security, and continuous monitoring.</li>
+              <li>Supported and enhanced CI/CD pipelines using Git workflows to automate deployments and reduce manual errors.</li>
+              <li>Administered Linux and Windows servers, writing automation scripts to streamline routine maintenance.</li>
+              <li>Acted as key technical responder for incidents, implementing change requests within the ITIL v4 framework.</li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">CI/CD</span><span class="tag">Linux</span><span class="tag">ITIL v4</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content glass-card">
+            <div class="timeline-header">
+              <div>
+                <h3>Full-Stack Developer</h3>
+                <p class="timeline-company">ClickPitch</p>
+              </div>
+              <span class="timeline-date">Mar 2024 – Sept 2024</span>
+            </div>
+            <ul class="timeline-list">
+              <li>Led end-to-end development of an MVP careers web application, translating founder requirements into a market-ready product.</li>
+              <li>Engineered a responsive front-end using React and Vite; built and managed the full back-end on Firebase including Firestore and Authentication.</li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="tag">React</span><span class="tag">Vite</span><span class="tag">Firebase</span><span class="tag">Firestore</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content glass-card">
+            <div class="timeline-header">
+              <div>
+                <h3>Computer Science Tutor</h3>
+                <p class="timeline-company">Private (1-on-1)</p>
+              </div>
+              <span class="timeline-date">Oct 2023 – May 2024</span>
+            </div>
+            <ul class="timeline-list">
+              <li>Mentored an A-Level student in Python programming and algorithmic thinking, targeting specific areas of weakness.</li>
+              <li>Guided exam preparation through past papers, resulting in measurable improvement.</li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="tag">Python</span><span class="tag">Algorithms</span><span class="tag">Mentoring</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content glass-card">
+            <div class="timeline-header">
+              <div>
+                <h3>CCTV Fault Diagnosis</h3>
+                <p class="timeline-company">Freelance</p>
+              </div>
+              <span class="timeline-date">Apr 2026</span>
+            </div>
+            <ul class="timeline-list">
+              <li>Diagnosed a malfunctioning CCTV system, correctly identifying the root cause as an outdated compute box — not the hard drive as initially suspected.</li>
+              <li>Prevented unnecessary hardware replacement, saving cost through accurate technical diagnosis.</li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="tag">Diagnostics</span><span class="tag">Hardware</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content glass-card">
+            <div class="timeline-header">
+              <div>
+                <h3>Network Cabling &amp; Configuration</h3>
+                <p class="timeline-company">Freelance</p>
+              </div>
+              <span class="timeline-date">Apr 2026</span>
+            </div>
+            <ul class="timeline-list">
+              <li>Planned, installed, and configured structured network cabling for a local environment.</li>
+              <li>Ensured clean cable management and verified full network connectivity across all endpoints.</li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="tag">Networking</span><span class="tag">Cabling</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content glass-card">
+            <div class="timeline-header">
+              <div>
+                <h3>Volunteer — Media &amp; Content Creation</h3>
+                <p class="timeline-company">Community Organisation</p>
+              </div>
+              <span class="timeline-date">Feb 2026 – Present</span>
+            </div>
+            <ul class="timeline-list">
+              <li>Collaborate to produce social media content for the organisation's online platforms.</li>
+              <li>Create posts, graphics, and multimedia assets to drive community engagement.</li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="tag">Content Creation</span><span class="tag">Social Media</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content glass-card">
+            <div class="timeline-header">
+              <div>
+                <h3>Data Research &amp; Entry Analyst</h3>
+                <p class="timeline-company">Cence Pay (UAE Client)</p>
+              </div>
+              <span class="timeline-date">Oct 2024</span>
+            </div>
+            <ul class="timeline-list">
+              <li>Researched and entered detailed data for bank cards and financial products across UAE payment providers for fintech app Cence Pay.</li>
+              <li>Ensured high accuracy and consistency to support the app's card comparison and financial product features.</li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="tag">Fintech</span><span class="tag">Data Analysis</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+          </div>
+          <div class="timeline-content glass-card">
+            <div class="timeline-header">
+              <div>
+                <h3>Security Steward / Door Supervisor</h3>
+                <p class="timeline-company">Habib Security &amp; A2Z Security</p>
+              </div>
+              <span class="timeline-date">Feb 2023 – Jan 2024</span>
+            </div>
+            <ul class="timeline-list">
+              <li>Coordinated safety and security operations for large-scale events of over 15,000 attendees including concerts and festivals.</li>
+              <li>Maintained venue safety using de-escalation techniques and clear team communication.</li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="tag">Security</span><span class="tag">Events</span><span class="tag">Team Leadership</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="section section-dark" id="projects">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Projects</span>
+        <h2 class="section-title">Things I've<br/><span class="gradient-text">actually built.</span></h2>
+      </div>
+      <div class="projects-grid">
+
+        <div class="project-card glass-card reveal featured">
+          <div class="project-badge">Featured — Final Year Dissertation</div>
+          <div class="project-header">
+            <div class="project-icon">
+              <svg viewBox="0 0 48 48" fill="none"><rect x="2" y="2" width="44" height="44" rx="10" fill="url(#pg1)"/><circle cx="16" cy="24" r="5" stroke="white" stroke-width="2.5"/><circle cx="32" cy="16" r="5" stroke="white" stroke-width="2.5"/><circle cx="32" cy="32" r="5" stroke="white" stroke-width="2.5"/><path d="M21 22l6-4M21 26l6 4" stroke="white" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="pg1" x1="0" y1="0" x2="48" y2="48"><stop stop-color="#0071e3"/><stop offset="1" stop-color="#bf5af2"/></linearGradient></defs></svg>
+            </div>
+            <h3>Automated Chaos Resilience Platform</h3>
+          </div>
+          <p>Engineered an air-gapped, on-premise Chaos Engineering platform using Cisco switches to simulate a secure, isolated network environment. Integrated a local Llama 3 8B AI model for automatic Root Cause Analysis.</p>
+          <ul class="project-highlights">
+            <li>Self-hosted GitLab CI/CD pipeline running completely off-grid</li>
+            <li>Local Llama 3 8B AI for OOB switch log analysis &amp; RCA reports</li>
+            <li>Dynamic SRE control panel with real-time fault injection analytics</li>
+          </ul>
+          <div class="project-tags">
+            <span class="skill-pill">Chaos Engineering</span>
+            <span class="skill-pill">GitLab CI/CD</span>
+            <span class="skill-pill">Llama 3</span>
+            <span class="skill-pill">Cisco</span>
+            <span class="skill-pill">Air-gapped Network</span>
+            <span class="skill-pill">SRE</span>
+          </div>
+        </div>
+
+        <div class="project-card glass-card reveal">
+          <div class="project-header">
+            <div class="project-icon">
+              <svg viewBox="0 0 48 48" fill="none"><rect x="2" y="2" width="44" height="44" rx="10" fill="url(#pg2)"/><path d="M12 24c0-6.627 5.373-12 12-12s12 5.373 12 12-5.373 12-12 12" stroke="white" stroke-width="2.5" stroke-linecap="round"/><path d="M24 12v12l8 4" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="pg2" x1="0" y1="0" x2="48" y2="48"><stop stop-color="#30d158"/><stop offset="1" stop-color="#00d4ff"/></linearGradient></defs></svg>
+            </div>
+            <h3>Pulse — Async Messaging Protocol</h3>
+          </div>
+          <p>Built a peer-to-peer messaging application in Python using Twisted and sockets, exploring low-level asynchronous networking protocols.</p>
+          <div class="project-tags">
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">Twisted</span>
+            <span class="skill-pill">Sockets</span>
+            <span class="skill-pill">P2P Networking</span>
+          </div>
+        </div>
+
+        <div class="project-card glass-card reveal">
+          <div class="project-header">
+            <div class="project-icon">
+              <svg viewBox="0 0 48 48" fill="none"><rect x="2" y="2" width="44" height="44" rx="10" fill="url(#pg3)"/><rect x="10" y="14" width="28" height="20" rx="3" stroke="white" stroke-width="2.5"/><path d="M16 28l4-4 4 4 8-8" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="pg3" x1="0" y1="0" x2="48" y2="48"><stop stop-color="#ff9f0a"/><stop offset="1" stop-color="#bf5af2"/></linearGradient></defs></svg>
+            </div>
+            <h3>Kairo London — E-Commerce UI</h3>
+          </div>
+          <p>Contributed responsive UI components to a live commercial e-commerce platform (kairo.london) from high-fidelity design mockups.</p>
+          <div class="project-tags">
+            <span class="skill-pill">React</span>
+            <span class="skill-pill">Responsive UI</span>
+            <span class="skill-pill">Freelance</span>
+            <span class="skill-pill">E-Commerce</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Education & Certs -->
+  <section class="section" id="education">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Education &amp; Certifications</span>
+        <h2 class="section-title">Credentials<br/><span class="gradient-text">that carry weight.</span></h2>
+      </div>
+      <div class="edu-grid">
+        <div class="edu-col">
+          <h3 class="edu-col-title reveal">Education</h3>
+
+          <div class="edu-card glass-card reveal">
+            <div class="edu-icon">
+              <svg viewBox="0 0 48 48" fill="none"><rect x="2" y="2" width="44" height="44" rx="10" fill="url(#eg1)"/><path d="M24 10l14 7-14 7-14-7 14-7z" stroke="white" stroke-width="2.5" stroke-linejoin="round"/><path d="M10 24v8c0 0 4 6 14 6s14-6 14-6v-8" stroke="white" stroke-width="2.5" stroke-linecap="round"/><path d="M38 17v9" stroke="white" stroke-width="2.5" stroke-linecap="round"/><defs><linearGradient id="eg1" x1="0" y1="0" x2="48" y2="48"><stop stop-color="#0071e3"/><stop offset="1" stop-color="#bf5af2"/></linearGradient></defs></svg>
+            </div>
+            <div class="edu-info">
+              <h4>BSc (Hons) Computer Science</h4>
+              <p class="edu-institution">City St George's, University of London</p>
+              <p class="edu-date">Sep 2022 – Present</p>
+              <p class="edu-note">All lectures completed — awaiting final results. Averaging First-Class (73%+).</p>
+              <p class="edu-modules">Cloud Technology · Computer Networks · Data Structures &amp; Algorithms · OOP Design</p>
+            </div>
+          </div>
+
+          <div class="edu-card glass-card reveal">
+            <div class="edu-icon">
+              <svg viewBox="0 0 48 48" fill="none"><rect x="2" y="2" width="44" height="44" rx="10" fill="url(#eg2)"/><path d="M24 10l14 7-14 7-14-7 14-7z" stroke="white" stroke-width="2.5" stroke-linejoin="round"/><path d="M38 17v9" stroke="white" stroke-width="2.5" stroke-linecap="round"/><defs><linearGradient id="eg2" x1="0" y1="0" x2="48" y2="48"><stop stop-color="#30d158"/><stop offset="1" stop-color="#00d4ff"/></linearGradient></defs></svg>
+            </div>
+            <div class="edu-info">
+              <h4>A-Levels</h4>
+              <p class="edu-institution">Walthamstow Academy Sixth Form</p>
+              <p class="edu-date">Sep 2020 – Jul 2022</p>
+              <p class="edu-note">Physics (B) · Mathematics (B) · Computer Science (B)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="edu-col">
+          <h3 class="edu-col-title reveal">Certifications</h3>
+
+          <div class="cert-list">
+            <div class="cert-card glass-card reveal">
+              <div class="cert-badge azure">AZ</div>
+              <div class="cert-info">
+                <h4>Azure Fundamentals (AZ-900)</h4>
+                <p>Microsoft</p>
+                <span class="cert-date">May 2026</span>
+              </div>
+              <div class="cert-check">✓</div>
+            </div>
+
+            <div class="cert-card glass-card reveal">
+              <div class="cert-badge kk">KK</div>
+              <div class="cert-info">
+                <h4>Fundamentals of DevOps</h4>
+                <p>KodeKloud</p>
+                <span class="cert-date">Jun 2026</span>
+              </div>
+              <div class="cert-check">✓</div>
+            </div>
+
+            <div class="cert-card glass-card reveal">
+              <div class="cert-badge kk">KK</div>
+              <div class="cert-info">
+                <h4>12 Factor App</h4>
+                <p>KodeKloud</p>
+                <span class="cert-date">May 2026</span>
+              </div>
+              <div class="cert-check">✓</div>
+            </div>
+
+            <div class="cert-card glass-card reveal">
+              <div class="cert-badge aws">AWS</div>
+              <div class="cert-info">
+                <h4>Cloud Quest: Cloud Practitioner</h4>
+                <p>Amazon Web Services</p>
+                <span class="cert-date">Aug 2024</span>
+              </div>
+              <div class="cert-check">✓</div>
+            </div>
+
+            <div class="cert-card glass-card reveal">
+              <div class="cert-badge li">in</div>
+              <div class="cert-info">
+                <h4>Learning ITIL®</h4>
+                <p>LinkedIn Learning</p>
+                <span class="cert-date">Sep 2024</span>
+              </div>
+              <div class="cert-check">✓</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section section-dark" id="contact">
+    <div class="container">
+      <div class="contact-center reveal">
+        <span class="section-tag">Contact</span>
+        <h2 class="section-title">Let's build<br/><span class="gradient-text">something great.</span></h2>
+        <p class="contact-sub">Available for full-time roles, contracts, and freelance engagements. Based in London — open to remote.</p>
+        <div class="contact-links">
+          <a href="mailto:alimuhammadhafeez@gmail.com" class="btn-primary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Send me an email
+          </a>
+          <a href="https://linkedin.com/in/ali-hafeez" target="_blank" rel="noopener" class="btn-secondary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            Connect on LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p>© 2026 Ali Muhammad Hafeez Buttar</p>
+        <div class="footer-links">
+          <a href="https://linkedin.com/in/ali-hafeez" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/Ali-Hafeez" target="_blank" rel="noopener">GitHub</a>
+          <a href="mailto:alimuhammadhafeez@gmail.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
