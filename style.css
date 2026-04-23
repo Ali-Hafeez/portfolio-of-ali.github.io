@@ -537,8 +537,8 @@ html.light .glass-card:hover {
 }
 .about-stats {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
   margin-top: 44px;
 }
 .stat {
@@ -848,6 +848,11 @@ html.light .project-badge {
   grid-template-columns: 1fr 1fr;
   gap: 52px;
 }
+.edu-skills {
+  margin-top: 52px;
+  border-top: 1px solid var(--border);
+  padding-top: 48px;
+}
 .edu-col-title {
   font-size: 20px;
   font-weight: 700;
@@ -1017,7 +1022,7 @@ html.light .cert-check {
   .about-layout { grid-template-columns: 1fr; gap: 40px; }
   .about-grid { grid-template-columns: 1fr; }
   .about-card { display: none; }
-  .about-stats { grid-template-columns: repeat(4, 1fr); }
+  .about-stats { grid-template-columns: repeat(3, 1fr); }
   .projects-grid { grid-template-columns: 1fr 1fr; }
   .project-card.featured { grid-column: 1 / -1; }
   .contact-layout { grid-template-columns: 1fr; gap: 40px; }
