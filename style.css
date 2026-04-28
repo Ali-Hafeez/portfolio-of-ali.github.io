@@ -65,7 +65,6 @@ body {
   color: var(--text);
   overflow-x: hidden;
   line-height: 1.6;
-  cursor: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -73,40 +72,6 @@ body {
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 img, svg { display: block; }
-
-/* ==========================================
-   CUSTOM CURSOR
-   ========================================== */
-.cursor {
-  width: 32px; height: 32px;
-  border: 1px solid rgba(255,255,255,0.4);
-  border-radius: 50%;
-  position: fixed;
-  top: 0; left: 0;
-  pointer-events: none;
-  z-index: 9999;
-  transition: transform 0.2s cubic-bezier(0.16,1,0.3,1), border-color 0.2s, background 0.2s, width 0.2s, height 0.2s;
-  mix-blend-mode: difference;
-}
-html.light .cursor { border-color: rgba(0,0,0,0.35); }
-.cursor-dot {
-  width: 5px; height: 5px;
-  background: white;
-  border-radius: 50%;
-  position: fixed;
-  top: 0; left: 0;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: transform 0.04s linear;
-}
-html.light .cursor-dot { background: #1c1c1e; }
-.cursor.hover {
-  transform: translate(-50%, -50%) scale(1.7);
-  border-color: var(--blue-light);
-  background: rgba(0,113,227,0.08);
-}
-@media (hover: none) { .cursor, .cursor-dot { display: none; } }
 
 /* ==========================================
    SCROLLBAR
@@ -772,6 +737,33 @@ html.light .skill-pill:hover {
   opacity: 0.5;
 }
 .timeline-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.timeline-content { cursor: pointer; user-select: none; }
+.tl-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.tl-hint {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  opacity: 0.65;
+  transition: opacity 0.2s, color 0.2s;
+  letter-spacing: 0.02em;
+}
+.tl-hint svg { transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
+.timeline-content:hover .tl-hint { opacity: 1; color: var(--blue-light); }
+.timeline-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.16,1,0.3,1);
+}
+.timeline-content.expanded .timeline-body { max-height: 900px; }
+.timeline-content.expanded .tl-hint svg { transform: rotate(180deg); }
 
 /* ==========================================
    PROJECTS
@@ -1056,5 +1048,6 @@ html.light .cert-check {
   .stat-number { font-size: 26px; }
   .timeline-header { flex-direction: column; gap: 8px; }
   .timeline-date { align-self: flex-start; }
+  .tl-right { align-items: flex-start; }
   .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
 }

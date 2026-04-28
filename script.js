@@ -18,36 +18,6 @@
 })();
 
 /* ==========================================
-   CURSOR
-   ========================================== */
-const cursor = document.getElementById('cursor');
-const cursorDot = document.getElementById('cursorDot');
-let mx = 0, my = 0, cx = 0, cy = 0;
-
-if (window.matchMedia('(hover: hover)').matches) {
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cursorDot.style.left = mx + 'px';
-    cursorDot.style.top = my + 'px';
-  });
-
-  function animateCursor() {
-    cx += (mx - cx) * 0.1;
-    cy += (my - cy) * 0.1;
-    cursor.style.left = cx + 'px';
-    cursor.style.top = cy + 'px';
-    cursor.style.transform = `translate(-50%, -50%)`;
-    requestAnimationFrame(animateCursor);
-  }
-  animateCursor();
-
-  document.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-  });
-}
-
-/* ==========================================
    NAV SCROLL
    ========================================== */
 const nav = document.getElementById('nav');
@@ -113,3 +83,10 @@ const sectionObserver = new IntersectionObserver(
 );
 
 sections.forEach(s => sectionObserver.observe(s));
+
+/* ==========================================
+   TIMELINE EXPAND / COLLAPSE
+   ========================================== */
+document.querySelectorAll('.timeline-content').forEach(card => {
+  card.addEventListener('click', () => card.classList.toggle('expanded'));
+});
