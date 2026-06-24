@@ -153,6 +153,7 @@ img { display: block; max-width: 100%; }
 /* Pills */
 .pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 64px; }
 .pill {
+  display: inline-flex; align-items: center; gap: 6px;
   background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
   border-radius: 100px; padding: 8px 16px;
   font-size: 13px; color: rgba(255,255,255,.6); font-weight: 500;
