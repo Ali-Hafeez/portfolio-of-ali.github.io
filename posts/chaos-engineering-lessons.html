@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What building an air-gapped chaos lab taught me — Ali Muhammad Hafeez</title>
+  <meta name="description" content="Six months of fault injection on Cisco hardware — no internet, Llama 3 parsing OOB logs, GitLab CI running off-grid. Here's what actually surprised me." />
+  <meta property="og:title" content="What building an air-gapped chaos lab taught me" />
+  <meta property="og:description" content="Six months of fault injection on Cisco hardware with no internet connection." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">AMH</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#skills">Skills</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#education">Education</a></li>
+        <li><a href="../blog.html" class="nav-active-page">Blog</a></li>
+        <li><a href="../index.html#contact" class="nav-cta">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="nav-burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#education">Education</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <article class="post-layout">
+    <div class="container">
+
+      <header class="post-header reveal">
+        <a href="../blog.html" class="back-link">← All posts</a>
+        <div class="post-tags">
+          <span class="tag">SRE</span>
+          <span class="tag">Chaos Engineering</span>
+          <span class="tag">Networking</span>
+        </div>
+        <h1 class="post-title">What building an air-gapped chaos lab taught me</h1>
+        <div class="post-meta">
+          <span class="post-date">20 May 2026</span>
+          <span class="post-meta-sep">·</span>
+          <span class="post-readtime">6 min read</span>
+        </div>
+      </header>
+
+      <div class="prose reveal">
+
+        <p>For my final year dissertation I built ACRP — the Automated Chaos Resilience Platform. The brief was: design a chaos engineering environment that runs entirely off-grid, injects real network faults, and produces root cause analysis reports automatically. No cloud. No internet. A rack of Cisco switches, a self-hosted GitLab, and a local Llama 3 8B model doing the heavy lifting on log analysis.</p>
+
+        <p>Six months later I had something that worked. Here's what I wish I'd known before I started.</p>
+
+        <h2>The isolation constraint forces you to understand every dependency</h2>
+
+        <p>The first week I lost two days chasing a package install that silently failed because <code>pip</code> couldn't reach PyPI. Obvious in retrospect. But that moment set the tone for the entire project — in an air-gapped environment, you can't delegate understanding to a CDN or an API. Every tool, every runtime, every certificate has to be present and accounted for before you start.</p>
+
+        <p>Most engineers never have to think about what a Python package actually <em>is</em> at the byte level, or what DNS does when there's no resolver to ask. Air-gapping forces you to. It's uncomfortable at first. Then it becomes a superpower.</p>
+
+        <h2>Chaos engineering is really just disciplined observation</h2>
+
+        <p>The common perception of chaos engineering is "deliberately breaking things." That's the visible part. The actual discipline is in the observation loop: you define a steady-state hypothesis, inject a fault, measure deviation, and learn something. The fault injection is almost trivial compared to the instrumentation work.</p>
+
+        <p>My SRE control panel for ACRP wasn't impressive because it could trigger link-down events on Cisco interfaces. It was impressive because it could tell you — in real time — what the blast radius of that event was and surface the logs that explained why the system behaved the way it did.</p>
+
+        <blockquote>
+          The difference between a chaos experiment and random sabotage is documentation. If you can't reproduce the fault and measure its effect, you learned nothing.
+        </blockquote>
+
+        <h2>LLMs are genuinely useful for log parsing — with one big caveat</h2>
+
+        <p>Integrating Llama 3 8B for automated RCA was the most experimental part of the project. The input was raw OOB switch logs (Syslog format, lots of noise). The output was a structured summary: fault classification, probable cause, recommended remediation steps.</p>
+
+        <p>It worked well enough to be useful — and that surprised me. Raw switch logs are dense and vendor-specific. A model that can extract "STP topology change on Gi0/1 due to port going down" from forty lines of noise is genuinely time-saving.</p>
+
+        <p>The caveat: hallucinations. The model occasionally invented interface names or suggested remediation steps that were plausible but wrong. In a production environment that would be dangerous. In my dissertation lab it was a fascinating problem — it pushed me to build a confidence-scoring layer that flagged low-certainty outputs for human review rather than passing them straight through.</p>
+
+        <h2>GitLab CI running off a bare-metal box is completely viable</h2>
+
+        <p>One assumption I had coming in was that CI/CD required internet access — at minimum to pull images, at most to talk to cloud runners. Neither is true. GitLab can be fully self-hosted, runners can pull from a local registry, and pipelines can execute entirely within your air-gapped perimeter.</p>
+
+        <p>The pipeline I built ran automated fault injection tests on a schedule, collected metrics, generated reports, and committed them back to the repo. All of it happened on a box with no route to the outside world.</p>
+
+        <p>This matters beyond dissertations. Defence, finance, and government environments routinely require this kind of isolation. The skills transfer directly.</p>
+
+        <h2>What I'd do differently</h2>
+
+        <p>I'd start with observability. I spent the first month building the fault injection mechanisms and the last two months scrambling to add enough instrumentation to actually understand what the faults were doing. The ratio should have been reversed.</p>
+
+        <p>I'd also set up the local model registry before anything else. Getting Llama 3 running locally in an isolated environment takes longer than you expect — quantisation, inference speed, prompt engineering for structured output — and it's a bad dependency to still be debugging in week ten.</p>
+
+        <p>The project ended up in a good place. But the path was messier than it needed to be, and most of the mess came from not taking the isolation constraint seriously enough on day one.</p>
+
+      </div>
+
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p>© 2026 Ali Muhammad Hafeez Buttar</p>
+        <div class="footer-links">
+          <a href="../index.html">Home</a>
+          <a href="../blog.html">Blog</a>
+          <a href="https://linkedin.com/in/ali-hafeez" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:alimuhammadhafeez@gmail.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The incident at 2am: why I actually enjoy on-call — Ali Muhammad Hafeez</title>
+  <meta name="description" content="Most engineers dread the 2am page. I find it clarifying. On what on-call really teaches you about systems — and yourself." />
+  <meta property="og:title" content="The incident at 2am: why I actually enjoy on-call" />
+  <meta property="og:description" content="On what on-call really teaches you about systems — and yourself." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">AMH</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#skills">Skills</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#education">Education</a></li>
+        <li><a href="../blog.html" class="nav-active-page">Blog</a></li>
+        <li><a href="../index.html#contact" class="nav-cta">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="nav-burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#education">Education</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <article class="post-layout">
+    <div class="container">
+
+      <header class="post-header reveal">
+        <a href="../blog.html" class="back-link">← All posts</a>
+        <div class="post-tags">
+          <span class="tag">SRE</span>
+          <span class="tag">On-Call</span>
+          <span class="tag">DevOps</span>
+        </div>
+        <h1 class="post-title">The incident at 2am: why I actually enjoy on-call</h1>
+        <div class="post-meta">
+          <span class="post-date">8 Mar 2026</span>
+          <span class="post-meta-sep">·</span>
+          <span class="post-readtime">4 min read</span>
+        </div>
+      </header>
+
+      <div class="prose reveal">
+
+        <p>On my CV, under the About section, there's a line: <em>"I'm drawn to the unglamorous parts of engineering: the incident at 2am, the network that won't come up, the pipeline that keeps failing."</em> People ask me if I actually mean that. I do.</p>
+
+        <p>Here's why, and what I think people misunderstand about it.</p>
+
+        <h2>Incidents don't lie</h2>
+
+        <p>Normal engineering work is ambiguous. A feature that ships looks like success. A refactor that goes smoothly feels like progress. But you're never sure how much of that was skill and how much was favourable conditions. Incidents cut through that. When something breaks at 2am and people are paging you, there's no hiding — either you can navigate the system under pressure or you can't.</p>
+
+        <p>I find that clarity motivating rather than stressful. The ambiguity disappears. The problem is real, the feedback is immediate, and the outcome matters. That's a good environment to learn in.</p>
+
+        <h2>What you learn from a real incident</h2>
+
+        <p>You learn what the system actually is — not what the documentation says it is. You find the undocumented dependency, the config that drifts, the assumption that was never tested under load. These discoveries are genuinely useful. They improve runbooks, they drive reliability investment, they change how you build the next thing.</p>
+
+        <p>You also learn about yourself. How do you think when you're tired and under pressure? Do you spiral into every possible cause, or do you form and test hypotheses systematically? Do you communicate clearly with the team, or do you go quiet and solo? These are things you can only discover in the moment.</p>
+
+        <blockquote>
+          An incident is the most honest performance review a system — and an engineer — can get.
+        </blockquote>
+
+        <h2>The part people get wrong</h2>
+
+        <p>When I say I enjoy on-call, people sometimes hear "I enjoy staying up until 3am." That's not it. I enjoy the diagnostic process. The moment you form a hypothesis, run a query, and the data confirms it — that's satisfying regardless of the hour.</p>
+
+        <p>What I don't enjoy is unnecessary incidents. The ones caused by a change that didn't go through review, by a runbook that was never updated, by an alert threshold that was set once and never revisited. Those are avoidable, and they're the ones that make on-call genuinely miserable. The goal isn't to have more incidents — it's to make each one count.</p>
+
+        <h2>Why it matters for hiring</h2>
+
+        <p>I mention this on my CV specifically because a lot of cloud and infrastructure roles involve operational work — incident response, change management, keeping production stable. Some engineers treat that as the boring part they have to get through between the interesting projects. I treat it as the main event.</p>
+
+        <p>If you're hiring for an SRE or cloud infrastructure role and you want someone who leans into the operational side rather than tolerating it, that's what I'm signalling. The 2am framing is deliberate.</p>
+
+      </div>
+
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p>© 2026 Ali Muhammad Hafeez Buttar</p>
+        <div class="footer-links">
+          <a href="../index.html">Home</a>
+          <a href="../blog.html">Blog</a>
+          <a href="https://linkedin.com/in/ali-hafeez" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:alimuhammadhafeez@gmail.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

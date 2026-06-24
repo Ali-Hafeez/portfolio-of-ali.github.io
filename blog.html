@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Ali Muhammad Hafeez</title>
+  <meta name="description" content="Thoughts on cloud infrastructure, SRE, chaos engineering, and whatever else I'm working through." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">AMH</a>
+      <ul class="nav-links">
+        <li><a href="professional.html">Professional</a></li>
+        <li><a href="blog.html" class="nav-active-page">Blog</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="nav-burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="professional.html">Professional</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <section class="section blog-page-section">
+    <div class="container">
+      <div class="blog-page-header reveal">
+        <a href="index.html" class="back-link">← Back to portfolio</a>
+        <span class="section-tag">Writing</span>
+        <h1 class="section-title">Thoughts &amp; write-ups.</h1>
+        <p class="blog-page-sub">Cloud infrastructure, SRE, and whatever else I'm working through.</p>
+      </div>
+      <div class="blog-listing-grid" id="blogListingGrid">
+        <!-- Rendered from blog-data.js -->
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p>© 2026 Ali Muhammad Hafeez Buttar</p>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="https://linkedin.com/in/ali-hafeez" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/Ali-Hafeez" target="_blank" rel="noopener">GitHub</a>
+          <a href="mailto:alimuhammadhafeez@gmail.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="blog-data.js"></script>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderBlogGrid('blogListingGrid', null);
+    });
+  </script>
+</body>
+</html>

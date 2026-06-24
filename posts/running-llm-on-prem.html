@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Running Llama 3 on-prem in an air-gapped lab — Ali Muhammad Hafeez</title>
+  <meta name="description" content="When your platform can't call an external API, you run the model yourself. Lessons from integrating Llama 3 8B into an isolated Cisco network." />
+  <meta property="og:title" content="Running Llama 3 on-prem in an air-gapped lab" />
+  <meta property="og:description" content="Lessons from integrating Llama 3 8B into an isolated network for automated root cause analysis." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">AMH</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#skills">Skills</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#education">Education</a></li>
+        <li><a href="../blog.html" class="nav-active-page">Blog</a></li>
+        <li><a href="../index.html#contact" class="nav-cta">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="nav-burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#education">Education</a></li>
+      <li><a href="../blog.html">Blog</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <article class="post-layout">
+    <div class="container">
+
+      <header class="post-header reveal">
+        <a href="../blog.html" class="back-link">← All posts</a>
+        <div class="post-tags">
+          <span class="tag">AI</span>
+          <span class="tag">On-Prem</span>
+          <span class="tag">Infrastructure</span>
+        </div>
+        <h1 class="post-title">Running Llama 3 on-prem in an air-gapped lab</h1>
+        <div class="post-meta">
+          <span class="post-date">15 Apr 2026</span>
+          <span class="post-meta-sep">·</span>
+          <span class="post-readtime">5 min read</span>
+        </div>
+      </header>
+
+      <div class="prose reveal">
+
+        <p>When I decided to add LLM-powered root cause analysis to my chaos engineering platform, the obvious path was an API call to OpenAI or Anthropic. But the platform runs in an air-gapped network — no internet route, by design. So I had to run the model locally.</p>
+
+        <p>Here's what that actually looked like, and what I learned from it.</p>
+
+        <h2>Choosing the model</h2>
+
+        <p>The task was narrow: parse Syslog output from Cisco switches and produce structured RCA reports. I needed something that could run on consumer hardware (a mid-range workstation, not a GPU cluster), handle technical vocabulary, and produce consistent structured output.</p>
+
+        <p>Llama 3 8B hit the right balance. Quantised to Q4_K_M with llama.cpp, it ran at roughly 12 tokens/second on CPU — slow enough to be annoying, fast enough to be useful. The 8B parameter count was key: the 70B variant would have required hardware I didn't have.</p>
+
+        <h2>Getting structured output reliably</h2>
+
+        <p>The hardest part wasn't running the model. It was getting consistent JSON output from it. Unstructured log parsing was fine — the model understood Cisco Syslog format well. But when I needed it to return a structured object (fault classification, severity, affected interfaces, recommended steps), the output varied in ways that broke downstream processing.</p>
+
+        <p>The solution was a combination of strict prompt engineering and a grammar-constrained sampling backend. With llama.cpp's grammar support, you can define a JSON schema and the model's token sampling is constrained to valid outputs matching that schema. Hallucinated field names became impossible. Malformed JSON became impossible.</p>
+
+        <blockquote>
+          Constrained generation is the practical solution to LLM reliability in production tooling. Let the model do the reasoning; let the grammar enforce the format.
+        </blockquote>
+
+        <h2>The confidence problem</h2>
+
+        <p>Even with structured output, the model sometimes produced plausible but incorrect diagnoses — a real interface name used in the wrong context, a remediation step that made sense for a different fault type. Without a confidence score, there was no way to flag these for human review.</p>
+
+        <p>I implemented a rough proxy: ask the model to rate its own certainty on a 1–5 scale alongside the diagnosis. It's not statistically calibrated, but it proved surprisingly useful. Outputs with self-reported certainty of 1–2 correlated strongly with the cases where my manual review found errors. Low-confidence outputs got routed to a review queue rather than auto-committed to the report.</p>
+
+        <h2>What the isolation actually costs you</h2>
+
+        <p>Model updates are manual. When Meta releases a new Llama version, I have to download it externally, transfer it in, and re-validate the prompts. That's not a big deal for a dissertation project. In a production air-gapped environment with a proper change management process, it's a real operational consideration.</p>
+
+        <p>The same applies to the llama.cpp binary itself, any Python dependencies, and the inference server. Everything has to be treated like infrastructure — versioned, tested before deployment, and rolled back carefully if something breaks.</p>
+
+        <h2>Where this pattern actually belongs</h2>
+
+        <p>Running LLMs on-prem in isolated environments isn't a niche academic exercise. HMRC, MOD, NHS, financial services — anywhere data classification or network separation requirements prevent cloud egress. The pattern I implemented in a university lab is directly applicable to real enterprise AI deployments.</p>
+
+        <p>The operational overhead is real but manageable. The capability gain — automated analysis of technical telemetry that would otherwise require a skilled engineer to parse manually — is significant enough to justify it.</p>
+
+      </div>
+
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p>© 2026 Ali Muhammad Hafeez Buttar</p>
+        <div class="footer-links">
+          <a href="../index.html">Home</a>
+          <a href="../blog.html">Blog</a>
+          <a href="https://linkedin.com/in/ali-hafeez" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:alimuhammadhafeez@gmail.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
