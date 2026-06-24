@@ -3,144 +3,323 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ali Muhammad Hafeez</title>
-  <meta name="description" content="Ali Muhammad Hafeez — London." />
-  <meta property="og:title" content="Ali Muhammad Hafeez" />
-  <meta property="og:description" content="Ali Muhammad Hafeez — London." />
+  <title>Ali Hafeez</title>
+  <meta name="description" content="Ali Muhammad Hafeez — Cloud Infrastructure Engineer &amp; Full-Stack Developer based in London." />
+  <meta property="og:title" content="Ali Hafeez" />
+  <meta property="og:description" content="Cloud Infrastructure Engineer &amp; Full-Stack Developer based in London." />
   <meta property="og:url" content="https://ali-hafeez.xyz" />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-dot" id="cursorDot"></div>
-
+  <!-- ── NAV ── -->
   <nav class="nav" id="nav">
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo">AMH</a>
-      <ul class="nav-links">
-        <li><a href="professional.html" class="nav-cta">Professional</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <button class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <div class="logo-badge">AH</div>
+        <span class="logo-name">Ali Hafeez</span>
+        <span class="logo-tag">/ personal</span>
       </button>
-      <button class="nav-burger" id="burger" aria-label="Menu">
+      <div class="nav-links" id="navLinks">
+        <button class="nav-link" onclick="scrollTo('feed')">Feed</button>
+        <button class="nav-link" onclick="scrollTo('professional')">Professional</button>
+        <div class="nav-sep"></div>
+        <a href="mailto:alimuhammadhafeez@gmail.com" class="nav-hire">Hire Me</a>
+      </div>
+      <button class="nav-burger" id="burger" onclick="toggleMenu()" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <div class="mobile-menu" id="mobileMenu">
-    <ul>
-      <li><a href="professional.html">Professional</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+  <!-- Mobile drawer -->
+  <div class="drawer" id="drawer">
+    <button class="drawer-link" onclick="scrollTo('feed');toggleMenu()">Feed</button>
+    <button class="drawer-link" onclick="scrollTo('professional');toggleMenu()">Professional</button>
+    <a href="mailto:alimuhammadhafeez@gmail.com" class="drawer-hire" onclick="toggleMenu()">Hire Me →</a>
   </div>
 
-  <!-- Hero -->
+  <!-- ── HERO ── -->
   <section class="hero" id="hero">
-    <div class="hero-bg">
-      <div class="orb orb-1"></div>
-      <div class="orb orb-2"></div>
-    </div>
-    <div class="container">
-      <div class="hero-content">
-        <h1 class="hero-name reveal">
-          <span>Ali Muhammad</span>
-          <span class="gradient-text">Hafeez</span>
-        </h1>
-        <p class="hero-location reveal">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          London, UK
-        </p>
-        <div class="hero-links reveal">
-          <a href="mailto:alimuhammadhafeez@gmail.com" class="hero-link">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            Email
-          </a>
-          <a href="https://linkedin.com/in/ali-hafeez" target="_blank" rel="noopener" class="hero-link">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            LinkedIn
-          </a>
-          <a href="https://github.com/Ali-Hafeez" target="_blank" rel="noopener" class="hero-link">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-            GitHub
-          </a>
-        </div>
+    <canvas id="canvas"></canvas>
+    <div class="hero-glow"></div>
+
+    <div class="hero-body">
+      <div class="hero-badge anim" style="--d:.2s">
+        <span class="badge-dot"></span>
+        Available for work · London, UK
       </div>
+
+      <h1 class="hero-h1 anim" style="--d:.35s">
+        Ali<br>
+        <span class="hero-gradient">Hafeez.</span>
+      </h1>
+
+      <p class="hero-sub anim" style="--d:.5s">
+        Cloud engineer. Full-stack builder. I automate things that break,<br class="br-hide">
+        and design systems that don't.
+      </p>
+
+      <div class="pills anim" style="--d:.65s">
+        <span class="pill">📸 Photography</span>
+        <span class="pill">🚗 Cars</span>
+        <span class="pill">⌚ Watches</span>
+        <span class="pill">💻 Computers</span>
+        <span class="pill">⚡ Electronics</span>
+        <span class="pill">🏛 Architecture</span>
+        <span class="pill">🌿 Nature</span>
+        <span class="pill">🚴 Cycling</span>
+        <span class="pill">🥾 Hiking</span>
+        <span class="pill">⛰ Climbing</span>
+      </div>
+
+      <div class="hero-ctas anim" style="--d:.9s">
+        <button class="btn-orange" onclick="scrollTo('feed')">Explore My World</button>
+        <button class="btn-ghost" onclick="scrollTo('professional')">See My Work</button>
+      </div>
+    </div>
+
+    <button class="scroll-hint anim" style="--d:1.2s" onclick="scrollTo('feed')">
+      <span>Scroll</span>
+      <svg class="bounce" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+  </section>
+
+  <!-- ── FEED ── -->
+  <section class="feed" id="feed">
+    <div class="feed-wrap">
+
+      <div class="feed-header reveal">
+        <div class="feed-header-row">
+          <h2 class="feed-h2">My World</h2>
+          <span class="feed-count">18 posts</span>
+        </div>
+        <p class="feed-sub">Everything I shoot, obsess over, and can't stop thinking about.</p>
+      </div>
+
+      <div class="filters reveal" id="filters">
+        <button class="filt active" data-f="all">✦ All</button>
+        <button class="filt" data-f="photography">📸 Photography</button>
+        <button class="filt" data-f="cars">🚗 Cars</button>
+        <button class="filt" data-f="watches">⌚ Watches</button>
+        <button class="filt" data-f="computers">💻 Computers</button>
+        <button class="filt" data-f="electronics">⚡ Electronics</button>
+        <button class="filt" data-f="architecture">🏛 Architecture</button>
+        <button class="filt" data-f="nature">🌿 Nature</button>
+        <button class="filt" data-f="cycling">🚴 Cycling</button>
+        <button class="filt" data-f="hiking">🥾 Hiking</button>
+        <button class="filt" data-f="climbing">⛰ Climbing</button>
+      </div>
+
+      <div class="feed-grid" id="feedGrid"></div>
     </div>
   </section>
 
-  <!-- =============================================
-       YOUR CANVAS — add your own sections below.
-       Each section can use class="section" for
-       consistent padding, and "container" for
-       the max-width wrapper.
-  ============================================= -->
-
-
-  <!-- Blog -->
-  <section class="section" id="blog">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">Writing</span>
-        <h2 class="section-title">Thoughts &amp; write-ups.</h2>
-      </div>
-      <div class="blog-grid" id="blogGrid">
-        <!-- Populated from blog-data.js -->
-      </div>
-      <div class="blog-more reveal">
-        <a href="blog.html" class="btn-secondary">All posts →</a>
-      </div>
+  <!-- ── PROFESSIONAL ── -->
+  <section class="pro" id="professional">
+    <div class="pro-wave">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,120 L0,60 Q360,0 720,60 Q1080,120 1440,40 L1440,120 Z" fill="#f5f1eb"/></svg>
     </div>
-  </section>
+    <div class="pro-dots"></div>
 
-  <!-- Contact -->
-  <section class="section section-dark" id="contact">
-    <div class="container">
-      <div class="contact-layout reveal">
-        <div class="contact-left">
-          <span class="section-tag">Contact</span>
-          <h2 class="section-title">Say hello.</h2>
-          <p class="contact-sub">Always open to a good conversation. Drop me a message.</p>
+    <div class="pro-wrap">
+
+      <!-- Header -->
+      <div class="pro-header reveal">
+        <div class="pro-label">
+          <span class="pro-label-dot"></span>Professional
         </div>
-        <div class="contact-right">
-          <a href="mailto:alimuhammadhafeez@gmail.com" class="btn-primary">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            alimuhammadhafeez@gmail.com
+        <div class="pro-header-split">
+          <h2 class="pro-h2">
+            Engineering<br>
+            <em class="pro-outline">with purpose.</em>
+          </h2>
+          <div class="pro-intro">
+            <p class="pro-bio">
+              Cloud-first. Full-stack capable. I build systems that survive the 2am incident and scale beyond it. First-Class CS degree (73%+), open to full-time roles in London or remote.
+            </p>
+            <div class="pro-actions">
+              <a href="mailto:alimuhammadhafeez@gmail.com" class="pro-btn-dark">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                Get In Touch
+              </a>
+              <a href="Ali_Hafeez_CV.pdf" download class="pro-btn-outline">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download CV
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid -->
+      <div class="pro-grid">
+
+        <!-- Experience -->
+        <div class="reveal">
+          <p class="grid-label">Experience</p>
+          <div class="timeline">
+
+            <div class="tl-item">
+              <div class="tl-track">
+                <div class="tl-dot tl-dot--active"></div>
+                <div class="tl-line"></div>
+              </div>
+              <div class="tl-body">
+                <div class="tl-row">
+                  <span class="tl-role">Cloud Infrastructure Engineer</span>
+                  <span class="tl-co">HMRC</span>
+                </div>
+                <span class="tl-period">Dec 2024 – Sept 2025</span>
+                <p class="tl-desc">Provisioned and managed scalable cloud infrastructure across AWS and Azure. Maintained CI/CD pipelines, automated server operations, and acted as key technical responder for incidents within the ITIL v4 framework.</p>
+              </div>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-track">
+                <div class="tl-dot"></div>
+                <div class="tl-line"></div>
+              </div>
+              <div class="tl-body">
+                <div class="tl-row">
+                  <span class="tl-role">Full-Stack Developer</span>
+                  <span class="tl-co">ClickPitch</span>
+                </div>
+                <span class="tl-period">Mar 2024 – Sept 2024</span>
+                <p class="tl-desc">Led end-to-end development of an MVP careers web app — React/Vite frontend with a full Firebase backend. Translated founder requirements directly into a market-ready product.</p>
+              </div>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-track">
+                <div class="tl-dot"></div>
+              </div>
+              <div class="tl-body">
+                <div class="tl-row">
+                  <span class="tl-role">CS Tutor</span>
+                  <span class="tl-co">Private (1-on-1)</span>
+                </div>
+                <span class="tl-period">Oct 2023 – May 2024</span>
+                <p class="tl-desc">Mentored an A-Level student through Python and algorithmic thinking. Targeted specific weaknesses with past papers — measurable grade improvement by end of term.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Skills + Projects -->
+        <div class="pro-right">
+
+          <!-- Skills -->
+          <div class="reveal">
+            <p class="grid-label">Skills &amp; Tools</p>
+            <div class="skills-grid">
+              <div class="skill-card">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,46,.5)" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                <div><div class="sk-name">AWS / Azure</div><div class="sk-sub">Cloud &amp; DevOps</div></div>
+              </div>
+              <div class="skill-card">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,46,.5)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                <div><div class="sk-name">React / Vite</div><div class="sk-sub">Frontend</div></div>
+              </div>
+              <div class="skill-card">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,46,.5)" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                <div><div class="sk-name">Python / Linux</div><div class="sk-sub">Backend &amp; Systems</div></div>
+              </div>
+              <div class="skill-card">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,46,.5)" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+                <div><div class="sk-name">CI/CD Pipelines</div><div class="sk-sub">Infrastructure</div></div>
+              </div>
+              <div class="skill-card">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,46,.5)" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                <div><div class="sk-name">JavaScript</div><div class="sk-sub">Full-Stack</div></div>
+              </div>
+              <div class="skill-card">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,46,.5)" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                <div><div class="sk-name">Networking</div><div class="sk-sub">TCP/IP &amp; Hardware</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Projects -->
+          <div class="reveal">
+            <p class="grid-label">Selected Projects</p>
+            <div class="proj-list">
+
+              <a class="proj-card" href="#">
+                <div class="proj-info">
+                  <div class="proj-name">ACRP</div>
+                  <div class="proj-desc">Air-gapped chaos engineering platform on Cisco switches with a local Llama 3 model for automated root cause analysis. Final year dissertation.</div>
+                  <div class="proj-tags">
+                    <span>Chaos Engineering</span><span>GitLab CI/CD</span><span>Llama 3</span><span>Cisco</span>
+                  </div>
+                </div>
+                <svg class="proj-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+
+              <a class="proj-card" href="#">
+                <div class="proj-info">
+                  <div class="proj-name">Pulse</div>
+                  <div class="proj-desc">Peer-to-peer messaging app in Python built on Twisted and raw sockets — low-level async networking without framework abstractions.</div>
+                  <div class="proj-tags">
+                    <span>Python</span><span>Twisted</span><span>Sockets</span><span>P2P</span>
+                  </div>
+                </div>
+                <svg class="proj-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+
+              <a class="proj-card" href="#">
+                <div class="proj-info">
+                  <div class="proj-name">Kairo London</div>
+                  <div class="proj-desc">Responsive UI components for a live e-commerce platform from Figma mockups. Freelance contribution.</div>
+                  <div class="proj-tags">
+                    <span>React</span><span>E-Commerce</span><span>Figma</span>
+                  </div>
+                </div>
+                <svg class="proj-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Pro footer -->
+      <div class="pro-footer reveal">
+        <span class="pro-footer-note">Open to full-time and contract roles · London / Remote</span>
+        <div class="pro-socials">
+          <a href="https://github.com/Ali-Hafeez" target="_blank" rel="noopener" class="soc-btn" title="GitHub">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
           </a>
-          <a href="https://linkedin.com/in/ali-hafeez" target="_blank" rel="noopener" class="btn-secondary">
+          <a href="https://linkedin.com/in/ali-hafeez" target="_blank" rel="noopener" class="soc-btn" title="LinkedIn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            Connect on LinkedIn
+          </a>
+          <a href="mailto:alimuhammadhafeez@gmail.com" class="soc-btn" title="Email">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </a>
         </div>
       </div>
+
     </div>
   </section>
 
+  <!-- ── FOOTER ── -->
   <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p>© 2026 Ali Muhammad Hafeez Buttar</p>
-        <div class="footer-links">
-          <a href="professional.html">Professional</a>
-          <a href="blog.html">Blog</a>
-          <a href="https://linkedin.com/in/ali-hafeez" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://github.com/Ali-Hafeez" target="_blank" rel="noopener">GitHub</a>
-        </div>
+    <div class="footer-wrap">
+      <span class="footer-copy">Made with ♥ by Ali Hafeez · 2026</span>
+      <div class="footer-links">
+        <button onclick="scrollTo('feed')">Feed</button>
+        <button onclick="scrollTo('professional')">Professional</button>
+        <a href="mailto:alimuhammadhafeez@gmail.com">Contact</a>
       </div>
     </div>
   </footer>
 
-  <script src="blog-data.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
