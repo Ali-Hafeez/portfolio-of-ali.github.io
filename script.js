@@ -108,27 +108,9 @@ const ICONS = {
   climbing:     `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 21h16L12 2z"/><path d="M9 14l3-2.5 3 2.5"/></svg>`,
 };
 
-/* ── Feed posts data ── */
-const POSTS = [
-  { id:1, cat:'photography', catLabel:'Photography', color:'#e879f9', title:'Golden Hour in the Alps', caption:'Waited 3 hours for this exact light. The ridge turned amber before the clouds swallowed it whole. Zero regrets.', img:'https://images.unsplash.com/photo-1604223190546-a43e4c7f29d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080', date:'Jun 20, 2026', likes:847, views:4203, comments:42, tags:['landscape','goldenhour','alps'], size:'lg' },
-  { id:2, cat:'cars', catLabel:'Cars', color:'#60a5fa', title:'Midnight Run', caption:'Nothing hits like an empty road at 2am. Just the engine, the asphalt, and the playlist you built for exactly this moment.', img:'https://images.unsplash.com/photo-1485291571150-772bcfc10da5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080', date:'Jun 18, 2026', likes:1243, views:5832, comments:67, tags:['midnight','sedan','drive'], size:'md' },
-  { id:3, cat:'watches', catLabel:'Watches', color:'#f0a53d', title:'The Chronograph Obsession', caption:"Every dial tells a story. This one's a 1969 movement trapped in modern steel — and I'm absolutely fine with that.", img:'https://images.unsplash.com/photo-1600003014637-ff82a275e191?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080', date:'Jun 15, 2026', likes:634, views:2901, comments:28, tags:['chronograph','watchfam','horology'], size:'sm' },
-  { id:4, cat:'architecture', catLabel:'Architecture', color:'#fb923c', title:'Geometry Wins', caption:"Brutalism gets a bad rap. But stand beneath a concrete slab like this and tell me it doesn't make you feel something.", img:'https://images.unsplash.com/photo-1483366774565-c783b9f70e2c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080', date:'Jun 14, 2026', likes:512, views:2403, comments:19, tags:['brutalism','concrete','urban'], size:'md' },
-  { id:5, cat:'nature', catLabel:'Nature', color:'#4ade80', title:'Above the Canopy', caption:'From up here the world goes quiet. Just wind through the treetops and that particular green that only forests have.', img:'https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080', date:'Jun 11, 2026', likes:731, views:3104, comments:33, tags:['nature','forest','aerial'], size:'sm' },
-  { id:6, cat:'climbing', catLabel:'Climbing', color:'#f87171', title:'On Top of Everything', caption:'Summit reached at 6am. My lungs were screaming. The view made it embarrassingly worth it.', img:'https://images.unsplash.com/photo-1604766038176-736d6d72d652?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080', date:'Jun 9, 2026', likes:1108, views:6201, comments:89, tags:['summit','climbing','alpine'], size:'lg' },
-  { id:7, cat:'computers', catLabel:'Computers', color:'#34d399', title:'The Setup, Revisited', caption:'Rebuilt the desk again. Yes, I do this every 6 months. No, I have no regrets. The cable management is chef\'s kiss.', img:'https://images.unsplash.com/photo-1587831990711-23ca6441447b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080', date:'Jun 7, 2026', likes:892, views:4511, comments:54, tags:['desksetup','battlestation','pcbuild'], size:'wide' },
-  { id:8, cat:'cycling', catLabel:'Cycling', color:'#38bdf8', title:'Through the Valley', caption:'80km through mountain roads. My legs disagree with the plan. My heart is already planning the next ride.', img:'https://images.unsplash.com/photo-1695238070098-83d6775247a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080', date:'Jun 5, 2026', likes:678, views:3241, comments:31, tags:['cycling','endurance','mountains'], size:'md' },
-  { id:9, cat:'photography', catLabel:'Photography', color:'#e879f9', title:'Storm on the Horizon', caption:'You see the clouds coming from miles away. You have exactly 8 minutes to get the shot before it hits.', img:'https://images.unsplash.com/photo-1489493512598-d08130f49bea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080', date:'Jun 3, 2026', likes:504, views:2088, comments:17, tags:['storm','landscape','dramatic'], size:'sm' },
-  { id:10, cat:'watches', catLabel:'Watches', color:'#f0a53d', title:'Field Watch on Rock', caption:'Took the field watch where it belongs — out in the field. Or specifically, on a boulder 2400m up.', img:'https://images.unsplash.com/photo-1670177257750-9b47927f68eb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080', date:'May 30, 2026', likes:445, views:1823, comments:12, tags:['fieldwatch','outdoors','watchphotography'], size:'sm' },
-  { id:11, cat:'hiking', catLabel:'Hiking', color:'#fbbf24', title:'Early Starts', caption:"Nobody tells you about the 4am alarm. Or the cold. But also nobody can explain that feeling when the sun breaks the ridge.", img:'https://images.unsplash.com/photo-1551632811-561732d1e306?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080', date:'May 28, 2026', likes:769, views:3402, comments:44, tags:['hiking','earlymorning','mountains'], size:'md' },
-  { id:12, cat:'architecture', catLabel:'Architecture', color:'#fb923c', title:'White Lines', caption:'Minimalism done right. No ornamentation, no fuss — just the play of light against a clean surface all day long.', img:'https://images.unsplash.com/photo-1549791084-5f78368b208b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080', date:'May 25, 2026', likes:398, views:1744, comments:15, tags:['minimalism','architecture','white'], size:'sm' },
-  { id:13, cat:'cars', catLabel:'Cars', color:'#60a5fa', title:'Parked, Not Forgotten', caption:"There's an art to a car just sitting in the right light. This one knew what it was doing.", img:'https://images.unsplash.com/photo-1567808291548-fc3ee04dbcf0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080', date:'May 22, 2026', likes:921, views:4788, comments:58, tags:['carphoto','black','elegant'], size:'lg' },
-  { id:14, cat:'electronics', catLabel:'Electronics', color:'#a78bfa', title:'The Gadget Corner', caption:'Headphones, laptops, keyboards — the supporting cast that makes everything else possible. I care about all of them equally.', img:'https://images.unsplash.com/photo-1498049794561-7780e7231661?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080', date:'May 20, 2026', likes:543, views:2312, comments:26, tags:['gadgets','tech','edc'], size:'wide' },
-  { id:15, cat:'climbing', catLabel:'Climbing', color:'#f87171', title:'Jagged Peaks', caption:'Some mountains are beautiful from a distance. Others pull you toward them. These are the second kind.', img:'https://images.unsplash.com/photo-1759485182761-86185c772a94?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080', date:'May 17, 2026', likes:832, views:4001, comments:37, tags:['peaks','alpine','mountaineering'], size:'md' },
-  { id:16, cat:'hiking', catLabel:'Hiking', color:'#fbbf24', title:'Downhill Kind of Day', caption:'After 6 hours of uphill, the descent is its own kind of meditation. Tired legs, clear mind.', img:'https://images.unsplash.com/photo-1501554728187-ce583db33af7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080', date:'May 14, 2026', likes:612, views:2874, comments:21, tags:['hiking','trail','solo'], size:'sm' },
-  { id:17, cat:'nature', catLabel:'Nature', color:'#4ade80', title:'Field of Green', caption:"There's a particular shade of green after spring rain that I keep trying to photograph and keep failing to capture.", img:'https://images.unsplash.com/photo-1595104615356-cbe9c4364513?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080', date:'May 11, 2026', likes:487, views:2103, comments:18, tags:['spring','greenery','nature'], size:'sm' },
-  { id:18, cat:'photography', catLabel:'Photography', color:'#e879f9', title:'Green Valleys, Blue Sky', caption:'The conditions aligned. The mountains cooperated. I pressed the shutter and held my breath.', img:'https://images.unsplash.com/photo-1612441804231-77a36b284856?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080', date:'May 8, 2026', likes:703, views:3128, comments:39, tags:['landscape','mountains','photography'], size:'md' },
-];
+/* ── Feed posts data ──
+   Cleared pending real photos/write-ups — add entries here as they're shot. */
+const POSTS = [];
 
 /* Category active filter colours */
 const CAT_COLORS = {
@@ -182,11 +164,24 @@ function cardHTML(post) {
 /* Render the grid */
 function renderFeed(posts) {
   const grid = document.getElementById('feedGrid');
+  if (!grid) return;
+  if (!posts.length) {
+    grid.innerHTML = `
+      <div class="feed-empty">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        <div class="feed-empty-title">New posts coming soon</div>
+        <div class="feed-empty-sub">This feed is getting a refresh with real shots and stories — check back soon.</div>
+      </div>`;
+    return;
+  }
   grid.innerHTML = posts.map(p => {
     const spanClass = p.size === 'wide' ? 'span-3' : p.size === 'lg' ? 'span-2' : '';
     return `<div class="card-wrap ${spanClass}">${cardHTML(p)}</div>`;
   }).join('');
 }
+
+const feedCountEl = document.getElementById('feedCount');
+if (feedCountEl) feedCountEl.textContent = POSTS.length ? `${POSTS.length} posts` : 'coming soon';
 
 renderFeed(POSTS);
 
@@ -194,7 +189,7 @@ renderFeed(POSTS);
 let activeFilter = 'all';
 const filtersEl = document.getElementById('filters');
 
-filtersEl.addEventListener('click', e => {
+if (filtersEl) filtersEl.addEventListener('click', e => {
   const btn = e.target.closest('.filt');
   if (!btn) return;
   activeFilter = btn.dataset.f;
@@ -284,6 +279,7 @@ attachCardEvents();
 
 /* Default "all" filter button colour */
 (function() {
+  if (!filtersEl) return;
   const allBtn = filtersEl.querySelector('[data-f="all"]');
   if (allBtn) {
     allBtn.style.color = '#f0a53d';
@@ -291,6 +287,28 @@ attachCardEvents();
     allBtn.style.borderColor = 'rgba(240,165,61,.4)';
   }
 })();
+
+/* ── Blog listing (blog.html) ── */
+function renderBlogGrid(containerId, filterTag) {
+  const el = document.getElementById(containerId);
+  if (!el || typeof BLOG_POSTS === 'undefined') return;
+
+  const posts = filterTag ? BLOG_POSTS.filter(p => p.tags.includes(filterTag)) : BLOG_POSTS;
+
+  el.innerHTML = posts.map(p => `
+    <a class="blog-card" href="posts/${p.slug}.html">
+      <div class="blog-card-top">
+        <div class="blog-card-tags">${p.tags.map(t => `<span>${t}</span>`).join('')}</div>
+        <span class="blog-card-date">${new Date(p.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+      </div>
+      <h3 class="blog-card-title">${p.title}</h3>
+      <p class="blog-card-excerpt">${p.excerpt}</p>
+      <div class="blog-card-foot">
+        <span>${p.readTime} read</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+    </a>`).join('');
+}
 
 /* ── Scroll reveal ── */
 const observer = new IntersectionObserver((entries) => {

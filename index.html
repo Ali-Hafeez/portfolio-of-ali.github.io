@@ -13,6 +13,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="theme-color" content="#0a0a12" />
 </head>
 <body>
 
@@ -26,6 +28,7 @@
       </button>
       <div class="nav-links" id="navLinks">
         <button class="nav-link" onclick="scrollTo('feed')">Feed</button>
+        <a href="blog.html" class="nav-link">Writing</a>
         <button class="nav-link" onclick="scrollTo('professional')">Professional</button>
         <div class="nav-sep"></div>
         <a href="mailto:alimuhammadhafeez@gmail.com" class="nav-hire">Hire Me</a>
@@ -39,6 +42,7 @@
   <!-- Mobile drawer -->
   <div class="drawer" id="drawer">
     <button class="drawer-link" onclick="scrollTo('feed');toggleMenu()">Feed</button>
+    <a href="blog.html" class="drawer-link">Writing</a>
     <button class="drawer-link" onclick="scrollTo('professional');toggleMenu()">Professional</button>
     <a href="mailto:alimuhammadhafeez@gmail.com" class="drawer-hire" onclick="toggleMenu()">Hire Me →</a>
   </div>
@@ -96,7 +100,7 @@
       <div class="feed-header reveal">
         <div class="feed-header-row">
           <h2 class="feed-h2">My World</h2>
-          <span class="feed-count">18 posts</span>
+          <span class="feed-count" id="feedCount"></span>
         </div>
         <p class="feed-sub">Everything I shoot, obsess over, and can't stop thinking about.</p>
       </div>
@@ -140,7 +144,7 @@
           </h2>
           <div class="pro-intro">
             <p class="pro-bio">
-              Cloud-first. Full-stack capable. I build systems that survive the 2am incident and scale beyond it. First-Class CS degree (73%+), open to full-time roles in London or remote.
+              Cloud-first. Full-stack capable. I build systems that survive the 2am incident and scale beyond it. BSc Computer Science (2:1), City St George's, University of London — open to full-time roles in London or remote.
             </p>
             <div class="pro-actions">
               <a href="mailto:alimuhammadhafeez@gmail.com" class="pro-btn-dark">
@@ -167,6 +171,21 @@
             <div class="tl-item">
               <div class="tl-track">
                 <div class="tl-dot tl-dot--active"></div>
+                <div class="tl-line"></div>
+              </div>
+              <div class="tl-body">
+                <div class="tl-row">
+                  <span class="tl-role">BSc (Hons) Computer Science</span>
+                  <span class="tl-co">City St George's, University of London</span>
+                </div>
+                <span class="tl-period">Sept 2022 – May 2026 · 2:1 (68.7%)</span>
+                <p class="tl-desc">Placement degree. Final year highlights: Individual Project 81.3%, Theory of Computation 81.8%, Data Visualisation 80%. Dissertation: Automated Chaos Resilience Platform (see Projects).</p>
+              </div>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-track">
+                <div class="tl-dot"></div>
                 <div class="tl-line"></div>
               </div>
               <div class="tl-body">
@@ -223,8 +242,8 @@
                 <div><div class="sk-name">AWS / Azure</div><div class="sk-sub">Cloud &amp; DevOps</div></div>
               </div>
               <div class="skill-card">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,46,.5)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                <div><div class="sk-name">React / Vite</div><div class="sk-sub">Frontend</div></div>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,46,.5)" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                <div><div class="sk-name">Docker / Terraform</div><div class="sk-sub">Containers &amp; IaC</div></div>
               </div>
               <div class="skill-card">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,46,.5)" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
@@ -232,15 +251,23 @@
               </div>
               <div class="skill-card">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,46,.5)" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
-                <div><div class="sk-name">CI/CD Pipelines</div><div class="sk-sub">Infrastructure</div></div>
+                <div><div class="sk-name">CI/CD Pipelines</div><div class="sk-sub">GitHub &amp; GitLab</div></div>
               </div>
               <div class="skill-card">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,46,.5)" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                <div><div class="sk-name">JavaScript</div><div class="sk-sub">Full-Stack</div></div>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,46,.5)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                <div><div class="sk-name">React / Vite</div><div class="sk-sub">Frontend</div></div>
               </div>
               <div class="skill-card">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,46,.5)" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
                 <div><div class="sk-name">Networking</div><div class="sk-sub">TCP/IP &amp; Hardware</div></div>
+              </div>
+              <div class="skill-card">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,46,.5)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <div><div class="sk-name">Security</div><div class="sk-sub">Kali Linux &amp; ITIL v4</div></div>
+              </div>
+              <div class="skill-card">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,46,.5)" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                <div><div class="sk-name">JavaScript</div><div class="sk-sub">Full-Stack</div></div>
               </div>
             </div>
           </div>
@@ -289,6 +316,33 @@
         </div>
       </div>
 
+      <!-- Certifications -->
+      <div class="pro-certs reveal">
+        <p class="grid-label">Certifications</p>
+        <div class="certs-row">
+          <div class="cert-chip">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f0a53d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4-6.2-4.6-6.2 4.6 2.4-7.4L2 9.4h7.6z"/></svg>
+            <div><div class="cert-name">AWS Cloud Practitioner</div><div class="cert-sub">AWS · 2024</div></div>
+          </div>
+          <div class="cert-chip">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f0a53d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4-6.2-4.6-6.2 4.6 2.4-7.4L2 9.4h7.6z"/></svg>
+            <div><div class="cert-name">Azure Fundamentals (AZ-900)</div><div class="cert-sub">Microsoft · 2025</div></div>
+          </div>
+          <div class="cert-chip">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f0a53d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4-6.2-4.6-6.2 4.6 2.4-7.4L2 9.4h7.6z"/></svg>
+            <div><div class="cert-name">Fundamentals of DevOps</div><div class="cert-sub">KodeKloud · 2025</div></div>
+          </div>
+          <div class="cert-chip">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f0a53d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4-6.2-4.6-6.2 4.6 2.4-7.4L2 9.4h7.6z"/></svg>
+            <div><div class="cert-name">12 Factor App</div><div class="cert-sub">KodeKloud · 2025</div></div>
+          </div>
+          <div class="cert-chip cert-chip--progress">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,46,.4)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg>
+            <div><div class="cert-name">CS50: AI with Python</div><div class="cert-sub">Harvard · in progress</div></div>
+          </div>
+        </div>
+      </div>
+
       <!-- Pro footer -->
       <div class="pro-footer reveal">
         <span class="pro-footer-note">Open to full-time and contract roles · London / Remote</span>
@@ -314,6 +368,7 @@
       <span class="footer-copy">Made with <svg width="12" height="12" viewBox="0 0 24 24" fill="#f0a53d" stroke="none" style="vertical-align:middle;margin:0 1px -1px"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> by Ali Hafeez · 2026</span>
       <div class="footer-links">
         <button onclick="scrollTo('feed')">Feed</button>
+        <a href="blog.html">Writing</a>
         <button onclick="scrollTo('professional')">Professional</button>
         <a href="mailto:alimuhammadhafeez@gmail.com">Contact</a>
       </div>
