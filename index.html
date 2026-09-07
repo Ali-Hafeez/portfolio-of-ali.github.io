@@ -4,376 +4,267 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ali Hafeez</title>
-  <meta name="description" content="Ali Muhammad Hafeez — Cloud Infrastructure Engineer &amp; Full-Stack Developer based in London." />
+  <meta name="description" content="Ali Muhammad Hafeez — Cloud Infrastructure Engineer &amp; Full-Stack Developer based in London. A raw index of everything I shoot, drive, wear, build, and climb." />
   <meta property="og:title" content="Ali Hafeez" />
   <meta property="og:description" content="Cloud Infrastructure Engineer &amp; Full-Stack Developer based in London." />
   <meta property="og:url" content="https://ali-hafeez.xyz" />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@500;600;700;800;900&family=Archivo:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta name="theme-color" content="#0a0a12" />
+  <meta name="theme-color" content="#ece3d1" />
 </head>
 <body>
 
-  <!-- ── NAV ── -->
-  <nav class="nav" id="nav">
-    <div class="nav-inner">
-      <button class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-        <div class="logo-badge">AH</div>
-        <span class="logo-name">Ali Hafeez</span>
-        <span class="logo-tag">/ personal</span>
-      </button>
-      <div class="nav-links" id="navLinks">
-        <button class="nav-link" onclick="scrollTo('feed')">Feed</button>
-        <a href="blog.html" class="nav-link">Writing</a>
-        <button class="nav-link" onclick="scrollTo('professional')">Professional</button>
-        <div class="nav-sep"></div>
-        <a href="mailto:alimuhammadhafeez@gmail.com" class="nav-hire">Hire Me</a>
-      </div>
-      <button class="nav-burger" id="burger" onclick="toggleMenu()" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
+  <!-- ══════════════ DESKTOP LEFT RAIL ══════════════ -->
+  <aside class="side-nav" id="sideNav">
+    <button class="side-identity" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <div class="side-eyebrow">● SOLO FEED / EST. 2026</div>
+      <div class="side-name">ALI<br>HAFEEZ</div>
+    </button>
 
-  <!-- Mobile drawer -->
-  <div class="drawer" id="drawer">
-    <button class="drawer-link" onclick="scrollTo('feed');toggleMenu()">Feed</button>
-    <a href="blog.html" class="drawer-link">Writing</a>
-    <button class="drawer-link" onclick="scrollTo('professional');toggleMenu()">Professional</button>
-    <a href="mailto:alimuhammadhafeez@gmail.com" class="drawer-hire" onclick="toggleMenu()">Hire Me →</a>
+    <div class="side-index">
+      <div class="side-index-label">[ INDEX — FILTER FEED ]</div>
+      <div id="sideFilterList"></div>
+    </div>
+
+    <div class="side-footer">
+      <button class="side-work" onclick="goto('professional')">
+        THE PROFESSIONAL <span>&rarr;</span>
+      </button>
+      <a class="side-writing" href="blog.html">
+        WRITING <span>&rarr;</span>
+      </a>
+      <div class="side-meta">
+        LONDON / REMOTE<br>
+        <span class="neon">&#9670;</span> OPEN TO WORK
+      </div>
+    </div>
+  </aside>
+
+  <main class="page-main">
+
+    <!-- ══════════════ HERO ══════════════ -->
+    <section class="hero" id="hero">
+      <div class="hero-meta-strip">
+        <span>LAT 51.51&deg;N / LON 0.13&deg;W</span>
+        <span class="neon">&#9670; 18 ENTRIES INDEXED</span>
+        <span class="hero-meta-hide">SIGNAL: PERSONAL BROADCAST</span>
+      </div>
+
+      <div class="hero-body">
+        <div class="hero-kicker">EXPLORER &mdash; ENGINEER &mdash; COLLECTOR</div>
+        <h1 class="hero-heading">
+          My whole<br>
+          <span class="outline">world,</span> <span class="neon-fill">filed.</span>
+        </h1>
+        <p class="hero-copy">
+          Not a blog. Not a r&eacute;sum&eacute;. A raw index of everything I shoot, drive, wear,
+          build, and climb &mdash; filed like a stack of prints and receipts on a very
+          overloaded desk.
+        </p>
+      </div>
+
+      <div class="hero-marquee-wrap">
+        <div class="hero-marquee" id="heroMarquee"></div>
+      </div>
+    </section>
+
+    <!-- ══════════════ FEED ══════════════ -->
+    <section class="feed" id="feed">
+      <div class="feed-title-bar">
+        <h2 class="feed-h2">The Feed</h2>
+        <div class="feed-status">
+          <div class="neon" id="feedFilterLabel">&#9656; ALL CATEGORIES</div>
+          <div class="feed-count" id="feedCount">18 / 18 ENTRIES</div>
+        </div>
+      </div>
+
+      <div class="feed-carousel-wrap" id="feedCarouselWrap">
+        <div class="feed-carousel-label">FIELD NOTES // SWIPE &rarr;</div>
+        <div class="hcar" id="feedCarousel"></div>
+      </div>
+
+      <div class="feed-body">
+        <div class="feed-flow" id="feedGrid"></div>
+        <div class="feed-empty" id="feedEmpty" hidden>NO ENTRIES IN THIS CATEGORY.</div>
+      </div>
+    </section>
+
+    <!-- ══════════════ PROFESSIONAL ══════════════ -->
+    <section class="professional" id="professional">
+      <div class="pro-shift-bar">
+        <span class="neon">&#9626; SYSTEM SHIFT &mdash; GRID LOCKED</span>
+        <span class="pro-shift-mode">MODE: SERIOUS BUSINESS</span>
+      </div>
+
+      <div class="pro-inner">
+        <div class="pro-header">
+          <h2 class="pro-h2">Engineer<br><span class="outline">for hire</span></h2>
+          <p class="pro-lede">
+            Cloud engineer. Full-stack builder. I automate things that break, and
+            design systems that don't. Same person behind the feed above &mdash; this
+            is the part with the invoices attached.
+          </p>
+        </div>
+
+        <div class="pro-grid">
+          <div class="pro-exp">
+            <div class="kicker">[ A ] EXPERIENCE LOG</div>
+            <div class="exp-row">
+              <span class="exp-n neon">01</span>
+              <div>
+                <div class="exp-top">
+                  <span class="exp-role">Cloud Infrastructure Engineer</span>
+                  <span class="exp-period">DEC 2024&mdash;SEPT 2025</span>
+                </div>
+                <div class="exp-company neon">@ HMRC</div>
+                <p class="exp-desc">Provisioned and managed scalable cloud infrastructure across AWS and Azure. Maintained CI/CD pipelines, automated server operations, and acted as key technical responder for incidents within the ITIL v4 framework.</p>
+              </div>
+            </div>
+            <div class="exp-row">
+              <span class="exp-n neon">02</span>
+              <div>
+                <div class="exp-top">
+                  <span class="exp-role">Full-Stack Developer</span>
+                  <span class="exp-period">MAR 2024&mdash;SEPT 2024</span>
+                </div>
+                <div class="exp-company neon">@ ClickPitch</div>
+                <p class="exp-desc">Led end-to-end development of an MVP careers web app &mdash; React/Vite frontend with a full Firebase backend. Translated founder requirements directly into a market-ready product.</p>
+              </div>
+            </div>
+            <div class="exp-row exp-row-last">
+              <span class="exp-n neon">03</span>
+              <div>
+                <div class="exp-top">
+                  <span class="exp-role">CS Tutor</span>
+                  <span class="exp-period">OCT 2023&mdash;MAY 2024</span>
+                </div>
+                <div class="exp-company neon">@ Private (1-on-1)</div>
+                <p class="exp-desc">Mentored an A-Level student through Python programming and algorithmic thinking. Targeted specific weaknesses with past papers &mdash; measurable grade improvement by end of term.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pro-side">
+            <div class="kicker">[ B ] STACK</div>
+            <div class="stack-grid">
+              <div class="stack-item">AWS / Azure</div>
+              <div class="stack-item">React / Vite</div>
+              <div class="stack-item">Python / Linux</div>
+              <div class="stack-item">CI/CD Pipelines</div>
+              <div class="stack-item stack-nb">JavaScript</div>
+              <div class="stack-item stack-nb">Networking</div>
+            </div>
+            <div class="kicker">[ C ] CONTACT</div>
+            <div class="contact-list">
+              <a href="mailto:alimuhammadhafeez@gmail.com" class="pro-cta pro-cta-fill">
+                GET IN TOUCH <span class="icon-mail" aria-hidden="true"></span>
+              </a>
+              <a href="Ali_Hafeez_CV.pdf" class="pro-cta pro-cta-outline" download>
+                DOWNLOAD RESUME <span class="icon-download" aria-hidden="true"></span>
+              </a>
+              <div class="social-row">
+                <a href="https://github.com/Ali-Hafeez" target="_blank" rel="noopener" class="pro-cta social-btn" aria-label="GitHub">
+                  <span class="icon-github" aria-hidden="true"></span>
+                </a>
+                <a href="https://linkedin.com/in/ali-hafeez" target="_blank" rel="noopener" class="pro-cta social-btn" aria-label="LinkedIn">
+                  <span class="icon-linkedin" aria-hidden="true"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="pro-proj">
+            <div class="kicker">[ D ] SELECTED PROJECTS</div>
+            <div class="proj-row">
+              <a href="#" class="proj-card">
+                <div class="proj-top"><span>ACRP</span><span class="icon-arrow" aria-hidden="true"></span></div>
+                <p>Air-gapped chaos engineering platform on Cisco switches with a local Llama 3 model for automated root cause analysis. Final year dissertation.</p>
+                <span class="proj-tag">CHAOS ENG / LLAMA 3</span>
+              </a>
+              <a href="#" class="proj-card">
+                <div class="proj-top"><span>Pulse</span><span class="icon-arrow" aria-hidden="true"></span></div>
+                <p>Peer-to-peer messaging app in Python built on Twisted and raw sockets &mdash; low-level async networking without framework abstractions.</p>
+                <span class="proj-tag">PYTHON / SOCKETS</span>
+              </a>
+              <a href="#" class="proj-card">
+                <div class="proj-top"><span>Kairo London</span><span class="icon-arrow" aria-hidden="true"></span></div>
+                <p>Responsive UI components for a live e-commerce platform from Figma mockups. Freelance contribution.</p>
+                <span class="proj-tag">REACT / FIGMA</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ FOOTER ══════════════ -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-big">End of<br><span class="neon">feed.</span></div>
+        <div class="footer-meta">
+          <div>ALI HAFEEZ &mdash; SOLO FEED</div>
+          <div>&copy; <span id="year"></span> / ALL RIGHTS FILED</div>
+          <div class="neon">&#9670; BUILT RAW ON PURPOSE</div>
+          <div class="footer-links">
+            <button onclick="goto('feed')">Feed</button>
+            <a href="blog.html">Writing</a>
+            <button onclick="goto('professional')">Professional</button>
+            <a href="mailto:alimuhammadhafeez@gmail.com">Contact</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ══════════════ MOBILE CONTROL PANEL ══════════════ -->
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+      <div class="mobile-drawer-head">
+        <span>[ FILTER FEED ]</span>
+        <button id="mobileClose">CLOSE &#10005;</button>
+      </div>
+      <a class="mobile-drawer-item mobile-drawer-write" href="blog.html">WRITING &rarr;</a>
+      <div id="mobileFilterList"></div>
+    </div>
+    <div class="mobile-bar">
+      <button class="ctrl-btn" id="mobileFilterToggle">
+        <span class="ctrl-label">FILTER</span>
+        <span class="ctrl-value" id="mobileFilterValue">Everything</span>
+      </button>
+      <button class="ctrl-btn ctrl-work" onclick="goto('professional')">WORK &rarr;</button>
+    </div>
   </div>
 
-  <!-- ── HERO ── -->
-  <section class="hero" id="hero">
-    <canvas id="canvas"></canvas>
-    <div class="hero-glow"></div>
-
-    <div class="hero-body">
-      <div class="hero-badge anim" style="--d:.2s">
-        <span class="badge-dot"></span>
-        Available for work · London, UK
+  <!-- ══════════════ LIGHTBOX ══════════════ -->
+  <div class="lightbox" id="lightbox" hidden>
+    <div class="lb-panel" id="lbPanel">
+      <div class="lb-img-wrap">
+        <img id="lbImage" src="" alt="" />
       </div>
-
-      <h1 class="hero-h1 anim" style="--d:.35s">
-        Ali<br>
-        <span class="hero-gradient">Hafeez.</span>
-      </h1>
-
-      <p class="hero-sub anim" style="--d:.5s">
-        Cloud engineer. Full-stack builder. I automate things that break,<br class="br-hide">
-        and design systems that don't.
-      </p>
-
-      <div class="pills anim" style="--d:.65s">
-        <span class="pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>Photography</span>
-        <span class="pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="8" cy="18" r="2"/><circle cx="16" cy="18" r="2"/><path d="M6 18H3V10l3-4h12l3 4v8h-4"/><path d="M10 18h4"/></svg>Cars</span>
-        <span class="pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="7"/><polyline points="12 9 12 12 14 13"/><path d="M9.5 5h5M9.5 19h5"/></svg>Watches</span>
-        <span class="pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Computers</span>
-        <span class="pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Electronics</span>
-        <span class="pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Architecture</span>
-        <span class="pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>Nature</span>
-        <span class="pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6h-3l-2.5 11.5M15 6l3.5 11.5M3 9.5h11"/></svg>Cycling</span>
-        <span class="pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20l5-9 4 5 3-8 5 12H3z"/></svg>Hiking</span>
-        <span class="pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 21h16L12 2z"/><path d="M9 14l3-2.5 3 2.5"/></svg>Climbing</span>
-      </div>
-
-      <div class="hero-ctas anim" style="--d:.9s">
-        <button class="btn-orange" onclick="scrollTo('feed')">Explore My World</button>
-        <button class="btn-ghost" onclick="scrollTo('professional')">See My Work</button>
+      <div class="lb-content">
+        <div class="lb-head">
+          <span><span class="neon" id="lbCode"></span> <span id="lbCategory"></span></span>
+          <button id="lbClose">&#10005;</button>
+        </div>
+        <div class="lb-body">
+          <div class="lb-date" id="lbDate"></div>
+          <h3 class="lb-title" id="lbTitle"></h3>
+          <p class="lb-caption" id="lbCaption"></p>
+          <div class="lb-tags" id="lbTags"></div>
+        </div>
+        <div class="lb-stats">
+          <span>&#9825; <span id="lbLikes"></span></span>
+          <span>&#128172; <span id="lbComments"></span></span>
+          <span>&#128065; <span id="lbViews"></span></span>
+        </div>
       </div>
     </div>
-
-    <button class="scroll-hint anim" style="--d:1.2s" onclick="scrollTo('feed')">
-      <span>Scroll</span>
-      <svg class="bounce" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-    </button>
-  </section>
-
-  <!-- ── FEED ── -->
-  <section class="feed" id="feed">
-    <div class="feed-wrap">
-
-      <div class="feed-header reveal">
-        <div class="feed-header-row">
-          <h2 class="feed-h2">My World</h2>
-          <span class="feed-count" id="feedCount"></span>
-        </div>
-        <p class="feed-sub">Everything I shoot, obsess over, and can't stop thinking about.</p>
-      </div>
-
-      <div class="filters reveal" id="filters">
-        <button class="filt active" data-f="all"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>All</button>
-        <button class="filt" data-f="photography"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>Photography</button>
-        <button class="filt" data-f="cars"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="8" cy="18" r="2"/><circle cx="16" cy="18" r="2"/><path d="M6 18H3V10l3-4h12l3 4v8h-4"/><path d="M10 18h4"/></svg>Cars</button>
-        <button class="filt" data-f="watches"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="7"/><polyline points="12 9 12 12 14 13"/><path d="M9.5 5h5M9.5 19h5"/></svg>Watches</button>
-        <button class="filt" data-f="computers"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Computers</button>
-        <button class="filt" data-f="electronics"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Electronics</button>
-        <button class="filt" data-f="architecture"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Architecture</button>
-        <button class="filt" data-f="nature"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>Nature</button>
-        <button class="filt" data-f="cycling"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6h-3l-2.5 11.5M15 6l3.5 11.5M3 9.5h11"/></svg>Cycling</button>
-        <button class="filt" data-f="hiking"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20l5-9 4 5 3-8 5 12H3z"/></svg>Hiking</button>
-        <button class="filt" data-f="climbing"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 21h16L12 2z"/><path d="M9 14l3-2.5 3 2.5"/></svg>Climbing</button>
-      </div>
-
-      <div class="feed-grid" id="feedGrid"></div>
-    </div>
-  </section>
-
-  <!-- ── PROFESSIONAL ── -->
-  <section class="pro" id="professional">
-    <div class="pro-wave">
-      <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,120 L0,60 Q360,0 720,60 Q1080,120 1440,40 L1440,120 Z" fill="#f5f1eb"/></svg>
-    </div>
-    <div class="pro-dots"></div>
-
-    <div class="pro-wrap">
-
-      <!-- Header -->
-      <div class="pro-header reveal">
-        <div class="pro-label">
-          <span class="pro-label-dot"></span>Professional
-        </div>
-        <div class="pro-header-split">
-          <h2 class="pro-h2">
-            Engineering<br>
-            <em class="pro-outline">with purpose.</em>
-          </h2>
-          <div class="pro-intro">
-            <p class="pro-bio">
-              Cloud-first. Full-stack capable. I build systems that survive the 2am incident and scale beyond it. BSc Computer Science (2:1), City St George's, University of London — open to full-time roles in London or remote.
-            </p>
-            <div class="pro-actions">
-              <a href="mailto:alimuhammadhafeez@gmail.com" class="pro-btn-dark">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                Get In Touch
-              </a>
-              <a href="Ali_Hafeez_CV.pdf" download class="pro-btn-outline">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Download CV
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Grid -->
-      <div class="pro-grid">
-
-        <!-- Experience -->
-        <div class="reveal">
-          <p class="grid-label">Experience</p>
-          <div class="timeline">
-
-            <div class="tl-item">
-              <div class="tl-track">
-                <div class="tl-dot tl-dot--active"></div>
-                <div class="tl-line"></div>
-              </div>
-              <div class="tl-body">
-                <div class="tl-row">
-                  <span class="tl-role">BSc (Hons) Computer Science</span>
-                  <span class="tl-co">City St George's, University of London</span>
-                </div>
-                <span class="tl-period">Sept 2022 – May 2026 · 2:1 (68.7%)</span>
-                <p class="tl-desc">Placement degree. Final year highlights: Individual Project 81.3%, Theory of Computation 81.8%, Data Visualisation 80%. Dissertation: Automated Chaos Resilience Platform (see Projects).</p>
-              </div>
-            </div>
-
-            <div class="tl-item">
-              <div class="tl-track">
-                <div class="tl-dot"></div>
-                <div class="tl-line"></div>
-              </div>
-              <div class="tl-body">
-                <div class="tl-row">
-                  <span class="tl-role">Cloud Infrastructure Engineer</span>
-                  <span class="tl-co">HMRC</span>
-                </div>
-                <span class="tl-period">Dec 2024 – Sept 2025</span>
-                <p class="tl-desc">Provisioned and managed scalable cloud infrastructure across AWS and Azure. Maintained CI/CD pipelines, automated server operations, and acted as key technical responder for incidents within the ITIL v4 framework.</p>
-              </div>
-            </div>
-
-            <div class="tl-item">
-              <div class="tl-track">
-                <div class="tl-dot"></div>
-                <div class="tl-line"></div>
-              </div>
-              <div class="tl-body">
-                <div class="tl-row">
-                  <span class="tl-role">Full-Stack Developer</span>
-                  <span class="tl-co">ClickPitch</span>
-                </div>
-                <span class="tl-period">Mar 2024 – Sept 2024</span>
-                <p class="tl-desc">Led end-to-end development of an MVP careers web app — React/Vite frontend with a full Firebase backend. Translated founder requirements directly into a market-ready product.</p>
-              </div>
-            </div>
-
-            <div class="tl-item">
-              <div class="tl-track">
-                <div class="tl-dot"></div>
-              </div>
-              <div class="tl-body">
-                <div class="tl-row">
-                  <span class="tl-role">CS Tutor</span>
-                  <span class="tl-co">Private (1-on-1)</span>
-                </div>
-                <span class="tl-period">Oct 2023 – May 2024</span>
-                <p class="tl-desc">Mentored an A-Level student through Python and algorithmic thinking. Targeted specific weaknesses with past papers — measurable grade improvement by end of term.</p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- Skills + Projects -->
-        <div class="pro-right">
-
-          <!-- Skills -->
-          <div class="reveal">
-            <p class="grid-label">Skills &amp; Tools</p>
-            <div class="skills-grid">
-              <div class="skill-card">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,46,.5)" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                <div><div class="sk-name">AWS / Azure</div><div class="sk-sub">Cloud &amp; DevOps</div></div>
-              </div>
-              <div class="skill-card">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,46,.5)" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-                <div><div class="sk-name">Docker / Terraform</div><div class="sk-sub">Containers &amp; IaC</div></div>
-              </div>
-              <div class="skill-card">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,46,.5)" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-                <div><div class="sk-name">Python / Linux</div><div class="sk-sub">Backend &amp; Systems</div></div>
-              </div>
-              <div class="skill-card">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,46,.5)" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
-                <div><div class="sk-name">CI/CD Pipelines</div><div class="sk-sub">GitHub &amp; GitLab</div></div>
-              </div>
-              <div class="skill-card">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,46,.5)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                <div><div class="sk-name">React / Vite</div><div class="sk-sub">Frontend</div></div>
-              </div>
-              <div class="skill-card">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,46,.5)" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
-                <div><div class="sk-name">Networking</div><div class="sk-sub">TCP/IP &amp; Hardware</div></div>
-              </div>
-              <div class="skill-card">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,46,.5)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                <div><div class="sk-name">Security</div><div class="sk-sub">Kali Linux &amp; ITIL v4</div></div>
-              </div>
-              <div class="skill-card">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,46,.5)" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                <div><div class="sk-name">JavaScript</div><div class="sk-sub">Full-Stack</div></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Projects -->
-          <div class="reveal">
-            <p class="grid-label">Selected Projects</p>
-            <div class="proj-list">
-
-              <a class="proj-card" href="#">
-                <div class="proj-info">
-                  <div class="proj-name">ACRP</div>
-                  <div class="proj-desc">Air-gapped chaos engineering platform on Cisco switches with a local Llama 3 model for automated root cause analysis. Final year dissertation.</div>
-                  <div class="proj-tags">
-                    <span>Chaos Engineering</span><span>GitLab CI/CD</span><span>Llama 3</span><span>Cisco</span>
-                  </div>
-                </div>
-                <svg class="proj-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              </a>
-
-              <a class="proj-card" href="#">
-                <div class="proj-info">
-                  <div class="proj-name">Pulse</div>
-                  <div class="proj-desc">Peer-to-peer messaging app in Python built on Twisted and raw sockets — low-level async networking without framework abstractions.</div>
-                  <div class="proj-tags">
-                    <span>Python</span><span>Twisted</span><span>Sockets</span><span>P2P</span>
-                  </div>
-                </div>
-                <svg class="proj-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              </a>
-
-              <a class="proj-card" href="#">
-                <div class="proj-info">
-                  <div class="proj-name">Kairo London</div>
-                  <div class="proj-desc">Responsive UI components for a live e-commerce platform from Figma mockups. Freelance contribution.</div>
-                  <div class="proj-tags">
-                    <span>React</span><span>E-Commerce</span><span>Figma</span>
-                  </div>
-                </div>
-                <svg class="proj-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              </a>
-
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Certifications -->
-      <div class="pro-certs reveal">
-        <p class="grid-label">Certifications</p>
-        <div class="certs-row">
-          <div class="cert-chip">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f0a53d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4-6.2-4.6-6.2 4.6 2.4-7.4L2 9.4h7.6z"/></svg>
-            <div><div class="cert-name">AWS Cloud Practitioner</div><div class="cert-sub">AWS · 2024</div></div>
-          </div>
-          <div class="cert-chip">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f0a53d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4-6.2-4.6-6.2 4.6 2.4-7.4L2 9.4h7.6z"/></svg>
-            <div><div class="cert-name">Azure Fundamentals (AZ-900)</div><div class="cert-sub">Microsoft · 2025</div></div>
-          </div>
-          <div class="cert-chip">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f0a53d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4-6.2-4.6-6.2 4.6 2.4-7.4L2 9.4h7.6z"/></svg>
-            <div><div class="cert-name">Fundamentals of DevOps</div><div class="cert-sub">KodeKloud · 2025</div></div>
-          </div>
-          <div class="cert-chip">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f0a53d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4-6.2-4.6-6.2 4.6 2.4-7.4L2 9.4h7.6z"/></svg>
-            <div><div class="cert-name">12 Factor App</div><div class="cert-sub">KodeKloud · 2025</div></div>
-          </div>
-          <div class="cert-chip cert-chip--progress">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,46,.4)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg>
-            <div><div class="cert-name">CS50: AI with Python</div><div class="cert-sub">Harvard · in progress</div></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Pro footer -->
-      <div class="pro-footer reveal">
-        <span class="pro-footer-note">Open to full-time and contract roles · London / Remote</span>
-        <div class="pro-socials">
-          <a href="https://github.com/Ali-Hafeez" target="_blank" rel="noopener" class="soc-btn" title="GitHub">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          </a>
-          <a href="https://linkedin.com/in/ali-hafeez" target="_blank" rel="noopener" class="soc-btn" title="LinkedIn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
-          <a href="mailto:alimuhammadhafeez@gmail.com" class="soc-btn" title="Email">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ── FOOTER ── -->
-  <footer class="footer">
-    <div class="footer-wrap">
-      <span class="footer-copy">Made with <svg width="12" height="12" viewBox="0 0 24 24" fill="#f0a53d" stroke="none" style="vertical-align:middle;margin:0 1px -1px"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> by Ali Hafeez · 2026</span>
-      <div class="footer-links">
-        <button onclick="scrollTo('feed')">Feed</button>
-        <a href="blog.html">Writing</a>
-        <button onclick="scrollTo('professional')">Professional</button>
-        <a href="mailto:alimuhammadhafeez@gmail.com">Contact</a>
-      </div>
-    </div>
-  </footer>
+  </div>
 
   <script src="script.js"></script>
 </body>
