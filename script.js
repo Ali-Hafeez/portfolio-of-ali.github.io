@@ -229,36 +229,64 @@ function openLightbox(id) {
 }
 
 function closeLightbox() {
-  document.getElementById("lightbox").hidden = true;
+  const lightbox = document.getElementById("lightbox");
+  if (!lightbox) return;
+  lightbox.hidden = true;
   document.body.style.overflow = "";
 }
 
 /* ═══════════════════════ Mobile drawer ═══════════════════════ */
 
-function openMobileDrawer() { document.getElementById("mobileNav").classList.add("open"); }
-function closeMobileDrawer() { document.getElementById("mobileNav").classList.remove("open"); }
+function openMobileDrawer() { document.getElementById("mobileNav")?.classList.add("open"); }
+function closeMobileDrawer() { document.getElementById("mobileNav")?.classList.remove("open"); }
+
+/* ═══════════════════════ Blog index ═══════════════════════ */
+
+function renderBlogList(containerId) {
+  const container = document.getElementById(containerId);
+  if (!container || typeof BLOG_POSTS === "undefined") return;
+  container.innerHTML = BLOG_POSTS.map((p) => `
+    <a class="post-index-item" href="posts/${p.slug}.html">
+      <div class="post-index-meta">
+        <span>${formatBlogDate(p.date)}</span>
+        <span>&middot;</span>
+        <span>${p.readTime} read</span>
+      </div>
+      <h3 class="post-index-title">${p.title}</h3>
+      <p class="post-index-excerpt">${p.excerpt}</p>
+      <div class="post-index-tags">${p.tags.map((t) => `<span>${t}</span>`).join("")}</div>
+    </a>
+  `).join("");
+}
+
+function formatBlogDate(iso) {
+  const d = new Date(iso + "T00:00:00");
+  return d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+}
 
 /* ═══════════════════════ Init ═══════════════════════ */
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("year").textContent = new Date().getFullYear();
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  renderMarquee();
-  renderFilterLists();
-  renderCarousel();
-  renderFeed();
+  if (document.getElementById("heroMarquee")) renderMarquee();
+  if (document.getElementById("sideFilterList")) renderFilterLists();
+  if (document.getElementById("feedCarousel")) renderCarousel();
+  if (document.getElementById("feedGrid")) renderFeed();
+  if (document.getElementById("blogListingGrid")) renderBlogList("blogListingGrid");
 
-  document.getElementById("mobileFilterToggle").addEventListener("click", () => {
+  document.getElementById("mobileFilterToggle")?.addEventListener("click", () => {
     document.getElementById("mobileNav").classList.contains("open") ? closeMobileDrawer() : openMobileDrawer();
   });
-  document.getElementById("mobileClose").addEventListener("click", closeMobileDrawer);
-  document.getElementById("mobileOverlay").addEventListener("click", closeMobileDrawer);
+  document.getElementById("mobileClose")?.addEventListener("click", closeMobileDrawer);
+  document.getElementById("mobileOverlay")?.addEventListener("click", closeMobileDrawer);
 
-  document.getElementById("lightbox").addEventListener("click", (e) => {
+  document.getElementById("lightbox")?.addEventListener("click", (e) => {
     if (e.target.id === "lightbox") closeLightbox();
   });
-  document.getElementById("lbClose").addEventListener("click", closeLightbox);
-  document.getElementById("lbPanel").addEventListener("click", (e) => e.stopPropagation());
+  document.getElementById("lbClose")?.addEventListener("click", closeLightbox);
+  document.getElementById("lbPanel")?.addEventListener("click", (e) => e.stopPropagation());
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {

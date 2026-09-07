@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>What watching real incident response taught me — Ali Hafeez</title>
-  <meta name="description" content="A CV bullet point says I developed practical knowledge of the ITIL v4 incident management framework. Here's what that actually looked like day to day." />
-  <meta property="og:title" content="What watching real incident response taught me" />
-  <meta property="og:description" content="What learning ITIL v4 incident management alongside experienced engineers actually looked like day to day." />
+  <title>The CCTV fault everyone assumed was the hard drive — Ali Hafeez</title>
+  <meta name="description" content="A client was about to pay for a new hard drive. Methodical fault isolation found the real problem sitting one component over." />
+  <meta property="og:title" content="The CCTV fault everyone assumed was the hard drive" />
+  <meta property="og:description" content="A client was about to pay for a new hard drive. Methodical fault isolation found the real problem sitting one component over." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@500;600;700;800;900&family=Archivo:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
@@ -38,30 +38,29 @@
       <header class="article-header">
         <a class="back-link" href="../blog.html">&larr; All posts</a>
         <div class="article-tags">
-          <span>ITIL</span>
-          <span>Incident Response</span>
+          <span>Freelance</span>
+          <span>Troubleshooting</span>
         </div>
-        <h1 class="article-title">What watching real incident response taught me</h1>
-        <div class="article-meta">8 Mar 2026 <span class="dot">&middot;</span> 3 min read</div>
+        <h1 class="article-title">The CCTV fault everyone assumed was the hard drive</h1>
+        <div class="article-meta">22 Apr 2026 <span class="dot">&middot;</span> 3 min read</div>
       </header>
 
       <div class="article-body prose">
-        <p>One line on my CV reads: developed practical knowledge of the ITIL v4 incident management framework by working alongside experienced engineers during live incident response, change requests, and root cause analysis. It's an accurate line, but it compresses a fair bit into one sentence. Here's what it actually looked like.</p>
+        <p>A freelance client called me in about a CCTV system that had been misbehaving &mdash; recordings dropping out, playback that wouldn't load reliably. The assumption going in, from everyone who'd looked at it before me, was a failing hard drive. It's the obvious suspect, and it's usually also the most expensive one to replace unnecessarily.</p>
 
-        <h2>Process turns panic into a checklist</h2>
-        <p>The thing that struck me first wasn't the technical fault-finding, it was how calm the room stayed. ITIL v4 gives incidents a shape: a priority level, a clear escalation path, an owner, a defined point at which it gets logged and communicated. Watching engineers work through that structure made something click &mdash; the framework isn't bureaucracy for its own sake, it's what stops a stressful moment from turning into a guessing game.</p>
+        <h2>Isolate before you replace</h2>
+        <p>Instead of swapping the drive first and hoping, I worked through the system in order: power, then the compute box running the recording software, then the drive itself, then the connections between them. Each piece tested independently rather than assumed guilty by association.</p>
 
-        <h2>Root cause is rarely the first suspect</h2>
-        <p>Sitting in on root cause analysis sessions, the pattern that repeated was: the obvious explanation is checked and ruled out, and the real cause is usually one or two layers underneath it. Nobody jumped to conclusions. Everyone worked the evidence in order.</p>
+        <p>The drive, when checked on its own, was fine. The actual problem was the compute box &mdash; an ageing NVR unit that was struggling to keep up and quietly corrupting what it handed to the drive. From the outside, that looks identical to a drive failing. From the inside, it's a completely different fix.</p>
 
         <blockquote>
-          A good incident process isn't about being fast. It's about being fast <em>and</em> right, in that order of importance.
+          The expensive-sounding fault and the correct fault are not always the same fault.
         </blockquote>
 
-        <h2>Communication is half the job</h2>
-        <p>The part I didn't expect: how much of managing an incident well is clear, honest communication with the people affected by it &mdash; not just fixing the underlying fault. A change request handled properly and a stakeholder kept informed prevents its own kind of incident.</p>
+        <h2>Why it mattered</h2>
+        <p>Replacing the hard drive would have cost the client money and changed nothing &mdash; the corruption would have continued on a brand new disk. Identifying the compute box as the real cause meant the actual fix was smaller than everyone expected, including me at the start of the job.</p>
 
-        <p>It's a small experience in the scheme of a career, but it reshaped how I think about reliability in general: process and documentation, not improvisation, is what actually holds a system together under pressure.</p>
+        <p>Alongside that, I planned and installed some structured network cabling for the same client &mdash; the less glamorous half of the job, but the part where clean cable management and a verified end-to-end connection quietly prevent the next fault before it happens.</p>
       </div>
     </article>
 

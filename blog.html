@@ -4,80 +4,110 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Writing — Ali Hafeez</title>
-  <meta name="description" content="Cloud infrastructure, SRE, and chaos engineering write-ups from Ali Muhammad Hafeez." />
+  <meta name="description" content="Short, true write-ups on the cloud infrastructure, security, and software work Ali Muhammad Hafeez has actually done." />
   <meta property="og:title" content="Writing — Ali Hafeez" />
-  <meta property="og:description" content="Cloud infrastructure, SRE, and chaos engineering write-ups from Ali Muhammad Hafeez." />
+  <meta property="og:description" content="Short, true write-ups on the cloud infrastructure, security, and software work Ali Muhammad Hafeez has actually done." />
   <meta property="og:url" content="https://ali-hafeez.xyz/blog.html" />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@500;600;700;800;900&family=Archivo:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta name="theme-color" content="#0a0a12" />
+  <meta name="theme-color" content="#ece3d1" />
 </head>
 <body>
 
-  <!-- ── NAV ── -->
-  <nav class="nav scrolled" id="nav">
-    <div class="nav-inner">
-      <a href="index.html" class="nav-logo">
-        <div class="logo-badge">AH</div>
-        <span class="logo-name">Ali Hafeez</span>
-        <span class="logo-tag">/ personal</span>
+  <!-- ══════════════ DESKTOP LEFT RAIL ══════════════ -->
+  <aside class="side-nav">
+    <a class="side-identity" href="index.html" style="display:block;text-decoration:none;color:inherit">
+      <div class="side-eyebrow">● SOLO FEED / EST. 2026</div>
+      <div class="side-name">ALI<br>HAFEEZ</div>
+    </a>
+
+    <div class="side-index">
+      <div class="side-index-label">[ SECTIONS ]</div>
+      <a class="side-link" href="index.html#feed"><span class="side-link-code">01</span><span class="side-link-label">Feed</span></a>
+      <a class="side-link active" href="blog.html"><span class="side-link-code">02</span><span class="side-link-label">Writing</span></a>
+      <a class="side-link" href="index.html#professional"><span class="side-link-code">03</span><span class="side-link-label">Professional</span></a>
+    </div>
+
+    <div class="side-footer">
+      <a class="side-work" href="index.html#professional">
+        THE PROFESSIONAL <span>&rarr;</span>
       </a>
-      <div class="nav-links" id="navLinks">
-        <a href="index.html#feed" class="nav-link">Feed</a>
-        <span class="nav-link" style="color:#f0a53d">Writing</span>
-        <a href="index.html#professional" class="nav-link">Professional</a>
-        <div class="nav-sep"></div>
-        <a href="mailto:alimuhammadhafeez@gmail.com" class="nav-hire">Hire Me</a>
+      <div class="side-meta">
+        LONDON / REMOTE<br>
+        <span class="neon">&#9670;</span> OPEN TO WORK
       </div>
-      <button class="nav-burger" id="burger" onclick="toggleMenu()" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
     </div>
-  </nav>
+  </aside>
 
-  <!-- Mobile drawer -->
-  <div class="drawer" id="drawer">
-    <a href="index.html#feed" class="drawer-link">Feed</a>
-    <span class="drawer-link" style="color:#f0a53d">Writing</span>
-    <a href="index.html#professional" class="drawer-link">Professional</a>
-    <a href="mailto:alimuhammadhafeez@gmail.com" class="drawer-hire">Hire Me →</a>
+  <main class="page-main">
+
+    <!-- ══════════════ HERO ══════════════ -->
+    <section class="hero">
+      <div class="hero-meta-strip">
+        <span>WRITING / FIELD NOTES</span>
+        <span class="neon">&#9670; 4 POSTS INDEXED</span>
+      </div>
+
+      <div class="hero-body">
+        <div class="hero-kicker">CLOUD &mdash; SECURITY &mdash; CODE</div>
+        <h1 class="hero-heading">
+          Notes from<br>
+          <span class="outline">the</span> <span class="neon-fill">work.</span>
+        </h1>
+        <p class="hero-copy">
+          Short, true write-ups on the infrastructure, security, and software work I've actually
+          done &mdash; a dissertation project, a freelance callout, and what I've picked up watching
+          real incidents get handled.
+        </p>
+      </div>
+    </section>
+
+    <!-- ══════════════ BLOG LIST ══════════════ -->
+    <section class="blog-list" id="blogList">
+      <div class="feed-title-bar">
+        <h2 class="feed-h2">All Writing</h2>
+        <div class="feed-status">
+          <div class="neon">&#9656; 4 ENTRIES</div>
+        </div>
+      </div>
+      <div class="post-index" id="blogListingGrid"></div>
+    </section>
+
+    <!-- ══════════════ FOOTER ══════════════ -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-big">End of<br><span class="neon">writing.</span></div>
+        <div class="footer-meta">
+          <div>ALI HAFEEZ &mdash; SOLO FEED</div>
+          <div>&copy; <span id="year"></span> / ALL RIGHTS FILED</div>
+          <div class="neon">&#9670; BUILT RAW ON PURPOSE</div>
+          <div class="footer-links">
+            <a href="index.html#feed">Feed</a>
+            <a href="blog.html">Writing</a>
+            <a href="index.html#professional">Professional</a>
+            <a href="mailto:alimuhammadhafeez@gmail.com">Contact</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ══════════════ MOBILE CONTROL PANEL ══════════════ -->
+  <div class="mobile-nav">
+    <div class="mobile-bar">
+      <a class="ctrl-btn" href="index.html#feed">
+        <span class="ctrl-label">SITE</span>
+        <span class="ctrl-value">Feed</span>
+      </a>
+      <a class="ctrl-btn ctrl-work" href="index.html#professional">WORK &rarr;</a>
+    </div>
   </div>
-
-  <!-- ── BLOG HERO ── -->
-  <section class="blog-hero">
-    <div class="blog-hero-wrap">
-      <a href="index.html" class="back-link">← Back to portfolio</a>
-      <div class="blog-label"><span class="blog-label-dot"></span>Writing</div>
-      <h1 class="blog-h1">Thoughts &amp;<br><span class="hero-gradient">write-ups.</span></h1>
-      <p class="blog-sub">Cloud infrastructure, SRE, chaos engineering — and whatever else I'm working through.</p>
-    </div>
-  </section>
-
-  <!-- ── BLOG LIST ── -->
-  <section class="blog-list">
-    <div class="blog-list-wrap" id="blogListingGrid"></div>
-  </section>
-
-  <!-- ── FOOTER ── -->
-  <footer class="footer">
-    <div class="footer-wrap">
-      <span class="footer-copy">Made with <svg width="12" height="12" viewBox="0 0 24 24" fill="#f0a53d" stroke="none" style="vertical-align:middle;margin:0 1px -1px"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> by Ali Hafeez · 2026</span>
-      <div class="footer-links">
-        <a href="index.html#feed">Feed</a>
-        <a href="index.html#professional">Professional</a>
-        <a href="mailto:alimuhammadhafeez@gmail.com">Contact</a>
-      </div>
-    </div>
-  </footer>
 
   <script src="blog-data.js"></script>
   <script src="script.js"></script>
-  <script>
-    renderBlogGrid('blogListingGrid', null);
-  </script>
 </body>
 </html>
