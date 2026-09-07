@@ -11,6 +11,47 @@
   --body: 'Archivo', sans-serif;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #ece3d1;
+    --paper: #14110b;
+    --card: #1c170f;
+    --neon: #ff6a3d;
+    --muted: #9a9182;
+  }
+}
+
+:root[data-theme="dark"] {
+  --ink: #ece3d1;
+  --paper: #14110b;
+  --card: #1c170f;
+  --neon: #ff6a3d;
+  --muted: #9a9182;
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 990;
+  background: var(--card);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 9px 14px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.theme-toggle:hover { background: var(--neon); color: var(--card); border-color: var(--neon); }
+
+@media (max-width: 999px) {
+  .theme-toggle { top: auto; bottom: 96px; right: 12px; padding: 8px 12px; }
+}
+
 * { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }

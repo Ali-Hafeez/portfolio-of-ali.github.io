@@ -1,14 +1,54 @@
+/* ═══════════════════════ Theme ═══════════════════════ */
+
+(function initTheme() {
+  const saved = localStorage.getItem("theme");
+  if (saved === "dark" || saved === "light") {
+    document.documentElement.setAttribute("data-theme", saved);
+  }
+})();
+
+function currentTheme() {
+  const attr = document.documentElement.getAttribute("data-theme");
+  if (attr) return attr;
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
+function setTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+  localStorage.setItem("theme", theme);
+  updateThemeToggle();
+}
+
+function updateThemeToggle() {
+  const isDark = currentTheme() === "dark";
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute("content", isDark ? "#14110b" : "#ece3d1");
+  const btn = document.getElementById("themeToggle");
+  if (!btn) return;
+  btn.textContent = isDark ? "☀ LIGHT" : "☾ DARK";
+  btn.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+}
+
+function mountThemeToggle() {
+  if (document.getElementById("themeToggle")) return;
+  const btn = document.createElement("button");
+  btn.id = "themeToggle";
+  btn.className = "theme-toggle";
+  btn.addEventListener("click", () => setTheme(currentTheme() === "dark" ? "light" : "dark"));
+  document.body.appendChild(btn);
+  updateThemeToggle();
+}
+
+document.addEventListener("DOMContentLoaded", mountThemeToggle);
+
 /* ═══════════════════════ Data ═══════════════════════ */
 
 const CATEGORIES = [
   { key: "photography", label: "Photography", code: "PH" },
   { key: "cars", label: "Cars", code: "CR" },
   { key: "watches", label: "Watches", code: "WT" },
-  { key: "computers", label: "Computers", code: "CP" },
-  { key: "electronics", label: "Electronics", code: "EL" },
   { key: "architecture", label: "Architecture", code: "AR" },
   { key: "nature", label: "Nature", code: "NT" },
-  { key: "cycling", label: "Cycling", code: "CY" },
   { key: "hiking", label: "Hiking", code: "HK" },
   { key: "climbing", label: "Climbing", code: "CL" },
 ];
@@ -18,27 +58,27 @@ const INDEX = [{ key: "all", label: "Everything", code: "00" }, ...CATEGORIES.ma
   key: c.key, label: c.label, code: String(i + 1).padStart(2, "0"),
 }))];
 
-const img = (id) => `https://images.unsplash.com/photo-${id}?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080`;
+const img = (name) => `media/photos/${name}`;
 
 const POSTS = [
-  { id: "1", category: "photography", title: "Golden Hour in the Alps", caption: "Waited 3 hours for this exact light. The ridge turned amber before the clouds swallowed it whole. Zero regrets.", image: img("1604223190546-a43e4c7f29d7"), date: "2026.06.20", likes: 847, views: 4203, comments: 42, tags: ["landscape", "goldenhour", "alps"], size: "lg" },
-  { id: "2", category: "cars", title: "Midnight Run", caption: "Nothing hits like an empty road at 2am. Just the engine, the asphalt, and the playlist you built for exactly this moment.", image: img("1485291571150-772bcfc10da5"), date: "2026.06.18", likes: 1243, views: 5832, comments: 67, tags: ["midnight", "sedan", "drive"], size: "tall" },
-  { id: "3", category: "watches", title: "The Chronograph Obsession", caption: "Every dial tells a story. This one's a 1969 movement trapped in modern steel — and I'm absolutely fine with that.", image: img("1600003014637-ff82a275e191"), date: "2026.06.15", likes: 634, views: 2901, comments: 28, tags: ["chronograph", "watchfam", "horology"], size: "sm" },
-  { id: "4", category: "architecture", title: "Geometry Wins", caption: "Brutalism gets a bad rap. But stand beneath a concrete slab like this and tell me it doesn't make you feel something.", image: img("1483366774565-c783b9f70e2c"), date: "2026.06.14", likes: 512, views: 2403, comments: 19, tags: ["brutalism", "concrete", "urban"], size: "md" },
-  { id: "5", category: "nature", title: "Above the Canopy", caption: "From up here the world goes quiet. Just wind through the treetops and that particular green that only forests have.", image: img("1542273917363-3b1817f69a2d"), date: "2026.06.11", likes: 731, views: 3104, comments: 33, tags: ["nature", "forest", "aerial"], size: "sm" },
-  { id: "6", category: "climbing", title: "On Top of Everything", caption: "Summit reached at 6am. My lungs were screaming. The view made it embarrassingly worth it.", image: img("1604766038176-736d6d72d652"), date: "2026.06.09", likes: 1108, views: 6201, comments: 89, tags: ["summit", "climbing", "alpine"], size: "lg" },
-  { id: "7", category: "computers", title: "The Setup, Revisited", caption: "Rebuilt the desk again. Yes, I do this every 6 months. No, I have no regrets. The cable management is chef's kiss.", image: img("1587831990711-23ca6441447b"), date: "2026.06.07", likes: 892, views: 4511, comments: 54, tags: ["desksetup", "battlestation", "pcbuild"], size: "wide" },
-  { id: "8", category: "cycling", title: "Through the Valley", caption: "80km through mountain roads. My legs disagree with the plan. My heart is already planning the next ride.", image: img("1695238070098-83d6775247a7"), date: "2026.06.05", likes: 678, views: 3241, comments: 31, tags: ["cycling", "endurance", "mountains"], size: "md" },
-  { id: "9", category: "photography", title: "Storm on the Horizon", caption: "You see the clouds coming from miles away. You have exactly 8 minutes to get the shot before it hits.", image: img("1489493512598-d08130f49bea"), date: "2026.06.03", likes: 504, views: 2088, comments: 17, tags: ["storm", "landscape", "dramatic"], size: "tall" },
-  { id: "10", category: "watches", title: "Field Watch on Rock", caption: "Took the field watch where it belongs — out in the field. Or specifically, on a boulder 2400m up.", image: img("1670177257750-9b47927f68eb"), date: "2026.05.30", likes: 445, views: 1823, comments: 12, tags: ["fieldwatch", "outdoors", "watchphotography"], size: "sm" },
-  { id: "11", category: "hiking", title: "Early Starts", caption: "Nobody tells you about the 4am alarm. Or the cold. But also nobody can explain that feeling when the sun breaks the ridge.", image: img("1551632811-561732d1e306"), date: "2026.05.28", likes: 769, views: 3402, comments: 44, tags: ["hiking", "earlymorning", "mountains"], size: "md" },
-  { id: "12", category: "architecture", title: "White Lines", caption: "Minimalism done right. No ornamentation, no fuss — just the play of light against a clean surface all day long.", image: img("1549791084-5f78368b208b"), date: "2026.05.25", likes: 398, views: 1744, comments: 15, tags: ["minimalism", "architecture", "white"], size: "sm" },
-  { id: "13", category: "cars", title: "Parked, Not Forgotten", caption: "There's an art to a car just sitting in the right light. This one knew what it was doing.", image: img("1567808291548-fc3ee04dbcf0"), date: "2026.05.22", likes: 921, views: 4788, comments: 58, tags: ["carphoto", "black", "elegant"], size: "lg" },
-  { id: "14", category: "electronics", title: "The Gadget Corner", caption: "Headphones, laptops, keyboards — the supporting cast that makes everything else possible. I care about all of them equally.", image: img("1498049794561-7780e7231661"), date: "2026.05.20", likes: 543, views: 2312, comments: 26, tags: ["gadgets", "tech", "edc"], size: "wide" },
-  { id: "15", category: "climbing", title: "Jagged Peaks", caption: "Some mountains are beautiful from a distance. Others pull you toward them. These are the second kind.", image: img("1759485182761-86185c772a94"), date: "2026.05.17", likes: 832, views: 4001, comments: 37, tags: ["peaks", "alpine", "mountaineering"], size: "md" },
-  { id: "16", category: "hiking", title: "Downhill Kind of Day", caption: "After 6 hours of uphill, the descent is its own kind of meditation. Tired legs, clear mind.", image: img("1501554728187-ce583db33af7"), date: "2026.05.14", likes: 612, views: 2874, comments: 21, tags: ["hiking", "trail", "solo"], size: "sm" },
-  { id: "17", category: "nature", title: "Field of Green", caption: "There's a particular shade of green after spring rain that I keep trying to photograph and keep failing to capture.", image: img("1595104615356-cbe9c4364513"), date: "2026.05.11", likes: 487, views: 2103, comments: 18, tags: ["spring", "greenery", "nature"], size: "sm" },
-  { id: "18", category: "photography", title: "Green Valleys, Blue Sky", caption: "The conditions aligned. The mountains cooperated. I pressed the shutter and held my breath.", image: img("1612441804231-77a36b284856"), date: "2026.05.08", likes: 703, views: 3128, comments: 39, tags: ["landscape", "mountains", "photography"], size: "md" },
+  { id: "1", category: "photography", title: "Ridge Line, Snowdonia", caption: "Broke through the cloud and the whole valley just opened up. Photos never quite get the scale right, but this one comes close.", image: img("photography-ridge-line.jpg"), date: "2026.06.20", likes: 847, views: 4203, comments: 42, tags: ["snowdonia", "landscape", "goldenhour"], size: "lg" },
+  { id: "2", category: "cars", title: "Rear Three-Quarter", caption: "Caught it tucked into the corner of the car park, low light doing all the work. Some shapes just don't need help.", image: img("cars-ferrari-rear.jpg"), date: "2026.06.18", likes: 1243, views: 5832, comments: 67, tags: ["ferrari", "carspotting", "carphotography"], size: "tall" },
+  { id: "3", category: "watches", title: "Unboxing Day", caption: "Still can't get over how heavy the bracelet feels the first time. Some purchases you remember down to the smell of the box.", image: img("watches-unboxing.jpg"), date: "2026.06.15", likes: 634, views: 2901, comments: 28, tags: ["watches", "wristcheck", "horology"], size: "sm" },
+  { id: "4", category: "architecture", title: "Concrete and Sky", caption: "Valencia does this thing where the buildings look like they're mid-motion. Spent an hour just walking around this one looking for angles.", image: img("architecture-concrete-sky.jpg"), date: "2026.06.14", likes: 512, views: 2403, comments: 19, tags: ["architecture", "valencia", "calatrava"], size: "md" },
+  { id: "5", category: "nature", title: "That Colour Isn't Filtered", caption: "People assume I boosted the saturation. I didn't. The lake really is that colour, and it's somehow even better in person.", image: img("nature-turquoise-lake.jpg"), date: "2026.06.11", likes: 731, views: 3104, comments: 33, tags: ["lake", "nature", "wales"], size: "sm" },
+  { id: "6", category: "climbing", title: "The Scramble", caption: "This is the part of the route where conversation stops and everyone just watches their feet. Worth every careful step.", image: img("climbing-the-scramble.jpg"), date: "2026.06.09", likes: 1108, views: 6201, comments: 89, tags: ["scrambling", "climbing", "ridge"], size: "lg" },
+  { id: "7", category: "architecture", title: "Looking Straight Up", caption: "Found the one spot where the ribs of the roof line up with the palm trees below. Stood there rotating my phone for way too long.", image: img("architecture-looking-up.jpg"), date: "2026.06.07", likes: 892, views: 4511, comments: 54, tags: ["architecture", "symmetry", "travel"], size: "wide" },
+  { id: "8", category: "hiking", title: "Miles Underfoot", caption: "The path just keeps unfurling ahead of you on days like this. Legs tired, head completely clear.", image: img("hiking-miles-underfoot.jpg"), date: "2026.06.05", likes: 678, views: 3241, comments: 31, tags: ["hiking", "trail", "mountains"], size: "md" },
+  { id: "9", category: "photography", title: "The Line Up the Mountain", caption: "Watched the little train work its way up the slope for a good ten minutes before I even lifted the camera.", image: img("photography-mountain-railway.jpg"), date: "2026.06.03", likes: 504, views: 2088, comments: 17, tags: ["landscape", "railway", "mountains"], size: "tall" },
+  { id: "10", category: "watches", title: "Case and Bracelet", caption: "Laid it out on the desk for five minutes to get the light right before it went straight back on. No regrets about the detour.", image: img("watches-on-the-wrist.jpg"), date: "2026.05.30", likes: 445, views: 1823, comments: 12, tags: ["watches", "flatlay", "watchphotography"], size: "sm" },
+  { id: "11", category: "hiking", title: "Early Start", caption: "Left before sunrise to beat the crowds to the summit. Cold hands, warm light, absolutely no regrets.", image: img("hiking-early-start.jpg"), date: "2026.05.28", likes: 769, views: 3402, comments: 44, tags: ["hiking", "sunrise", "mountains"], size: "md" },
+  { id: "12", category: "architecture", title: "Old Stone", caption: "Wandered off from the main square and found this archway tucked between two buildings. No plaque, no explanation, just centuries of stone.", image: img("architecture-old-stone.jpg"), date: "2026.05.25", likes: 398, views: 1744, comments: 15, tags: ["architecture", "travel", "stonework"], size: "sm" },
+  { id: "13", category: "cars", title: "Parked Up", caption: "Spotted this one sitting outside completely unattended, which felt almost rude. Walked around it twice before taking the shot.", image: img("cars-parked-up.jpg"), date: "2026.05.22", likes: 921, views: 4788, comments: 58, tags: ["porsche", "carspotting", "carphotography"], size: "lg" },
+  { id: "14", category: "cars", title: "A Different Kind of Classic", caption: "The newer cars get all the attention at these meets, but this one had a small crowd of its own the whole afternoon.", image: img("cars-different-classic.jpg"), date: "2026.05.20", likes: 543, views: 2312, comments: 26, tags: ["classiccars", "carspotting", "mercedes"], size: "wide" },
+  { id: "15", category: "climbing", title: "Last Push", caption: "That final stretch before the summit always looks shorter than it is. Told myself 'just one more rise' about four times.", image: img("climbing-last-push.jpg"), date: "2026.05.17", likes: 832, views: 4001, comments: 37, tags: ["summit", "climbing", "alpine"], size: "md" },
+  { id: "16", category: "hiking", title: "Downhill Kind of Day", caption: "The descent always feels like its own reward after a climb like that. Tired legs, quiet mind, golden light the whole way down.", image: img("hiking-downhill.jpg"), date: "2026.05.14", likes: 612, views: 2874, comments: 21, tags: ["hiking", "descent", "mountains"], size: "sm" },
+  { id: "17", category: "nature", title: "Field of Green", caption: "There's a particular shade of green after weeks of rain that shows up in these hills and nowhere else I've photographed.", image: img("nature-field-of-green.jpg"), date: "2026.05.11", likes: 487, views: 2103, comments: 18, tags: ["wales", "nature", "hillside"], size: "sm" },
+  { id: "18", category: "photography", title: "Green Valleys, Blue Sky", caption: "The conditions lined up for about twenty minutes total. I spent all twenty of them right here.", image: img("photography-green-valleys.jpg"), date: "2026.05.08", likes: 703, views: 3128, comments: 39, tags: ["landscape", "mountains", "photography"], size: "md" },
 ];
 
 const formatNum = (n) => (n >= 1000 ? `${(n / 1000).toFixed(1)}K` : `${n}`);

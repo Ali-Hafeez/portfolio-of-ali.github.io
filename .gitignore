@@ -9,3 +9,9 @@ vite.config.ts
 *.zip
 rootZipped/
 p.pdf
+
+# Raw camera originals (huge, unoptimized) — only the web-sized
+# exports in media/photos/ are meant to ship with the site.
+media/*
+!media/photos/
+!media/photos/*
