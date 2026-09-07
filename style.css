@@ -462,13 +462,15 @@ button { font: inherit; color: inherit; }
 .pro-lede { font-family: var(--body); font-size: 15px; line-height: 1.6; max-width: 360px; margin: 0; }
 
 .pro-grid { margin-top: 28px; border: 2px solid var(--ink); display: grid; grid-template-columns: 2fr 1fr; }
-.pro-proj { grid-column: 1 / -1; }
+.pro-proj, .pro-edu { grid-column: 1 / -1; }
 
 @media (max-width: 900px) {
   .pro-grid { grid-template-columns: 1fr; }
   .pro-exp { border-right: none !important; border-bottom: 2px solid var(--ink); }
   .proj-row { grid-template-columns: 1fr !important; }
   .proj-card { border-right: none !important; border-bottom: 2px solid var(--ink); }
+  .edu-row { grid-template-columns: 1fr !important; }
+  .edu-col:first-child { border-right: none !important; border-bottom: 2px solid var(--ink); }
 }
 
 .kicker {
@@ -523,6 +525,16 @@ button { font: inherit; color: inherit; }
 .proj-card p { font-family: var(--body); font-size: 13px; line-height: 1.5; margin: 6px 0 10px; opacity: 0.8; }
 .proj-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 1px; background: var(--ink); color: var(--card); padding: 3px 7px; }
 .proj-card:hover .proj-tag { background: var(--card); color: var(--ink); }
+
+.pro-edu { border-top: 2px solid var(--ink); }
+.edu-row { display: grid; grid-template-columns: 1.3fr 1fr; }
+.edu-col { padding: 16px; }
+.edu-col:first-child { border-right: 2px solid var(--ink); }
+.edu-degree { font-family: var(--exp); font-weight: 800; font-size: 18px; text-transform: uppercase; letter-spacing: -0.3px; }
+.edu-school { font-family: var(--mono); font-size: 12px; margin: 3px 0 10px; opacity: 0.75; }
+.edu-detail { font-family: var(--body); font-size: 13.5px; line-height: 1.55; margin: 0; opacity: 0.8; }
+.edu-certs { display: flex; flex-direction: column; gap: 9px; font-family: var(--mono); font-size: 12px; justify-content: center; }
+.edu-certs span::before { content: "\25C6 "; color: var(--neon); }
 
 /* ─────────────── Footer ─────────────── */
 .site-footer { background: var(--ink); color: var(--card); }
