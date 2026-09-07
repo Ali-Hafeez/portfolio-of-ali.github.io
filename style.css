@@ -461,18 +461,6 @@ button { font: inherit; color: inherit; }
 }
 .post-card:hover .post-caption { opacity: 0.85; }
 
-.post-stats {
-  display: flex; align-items: center; justify-content: space-between; margin-top: 2px; padding-top: 8px;
-  border-top: 1px solid rgba(23,19,12,0.2);
-  font-family: var(--mono); font-size: 11px;
-}
-.post-card:hover .post-stats { border-top-color: rgba(242,235,219,0.25); }
-
-.post-like { display: inline-flex; align-items: center; gap: 5px; background: none; border: none; cursor: pointer; color: inherit; font-family: var(--mono); font-size: 11px; padding: 0; }
-.post-like.liked { color: var(--neon); }
-.post-comments, .post-views { display: inline-flex; align-items: center; gap: 5px; opacity: 0.7; }
-.post-views { opacity: 0.55; }
-
 /* Aspect ratios by card size */
 .size-sm .post-img-wrap { aspect-ratio: 4 / 5; }
 .size-tall .post-img-wrap { aspect-ratio: 3 / 5; }
@@ -686,10 +674,6 @@ button { font: inherit; color: inherit; }
 .lb-caption { font-family: var(--body); font-size: 15px; line-height: 1.6; margin: 0 0 16px; color: var(--ink); }
 .lb-tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .lb-tags span { font-family: var(--mono); font-size: 11px; border: 1px solid var(--ink); padding: 3px 8px; }
-
-.lb-stats { display: flex; border-top: 2px solid var(--ink); font-family: var(--mono); font-size: 12px; }
-.lb-stats span { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 12px 0; border-right: 1px solid var(--ink); }
-.lb-stats span:last-child { border-right: none; }
 
 @media (max-width: 720px) {
   .lb-panel { grid-template-columns: 1fr !important; max-height: 90vh; }

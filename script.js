@@ -61,32 +61,29 @@ const INDEX = [{ key: "all", label: "Everything", code: "00" }, ...CATEGORIES.ma
 const img = (name) => `media/photos/${name}`;
 
 const POSTS = [
-  { id: "1", category: "photography", title: "Ridge Line, Snowdonia", caption: "Broke through the cloud and the whole valley just opened up. Photos never quite get the scale right, but this one comes close.", image: img("photography-ridge-line.jpg"), date: "2026.06.20", likes: 847, views: 4203, comments: 42, tags: ["snowdonia", "landscape", "goldenhour"], size: "lg" },
-  { id: "2", category: "cars", title: "Rear Three-Quarter", caption: "Caught it tucked into the corner of the car park, low light doing all the work. Some shapes just don't need help.", image: img("cars-ferrari-rear.jpg"), date: "2026.06.18", likes: 1243, views: 5832, comments: 67, tags: ["ferrari", "carspotting", "carphotography"], size: "tall" },
-  { id: "3", category: "watches", title: "Unboxing Day", caption: "Still can't get over how heavy the bracelet feels the first time. Some purchases you remember down to the smell of the box.", image: img("watches-unboxing.jpg"), date: "2026.06.15", likes: 634, views: 2901, comments: 28, tags: ["watches", "wristcheck", "horology"], size: "sm" },
-  { id: "4", category: "architecture", title: "Concrete and Sky", caption: "Valencia does this thing where the buildings look like they're mid-motion. Spent an hour just walking around this one looking for angles.", image: img("architecture-concrete-sky.jpg"), date: "2026.06.14", likes: 512, views: 2403, comments: 19, tags: ["architecture", "valencia", "calatrava"], size: "md" },
-  { id: "5", category: "nature", title: "That Colour Isn't Filtered", caption: "People assume I boosted the saturation. I didn't. The lake really is that colour, and it's somehow even better in person.", image: img("nature-turquoise-lake.jpg"), date: "2026.06.11", likes: 731, views: 3104, comments: 33, tags: ["lake", "nature", "wales"], size: "sm" },
-  { id: "6", category: "climbing", title: "The Scramble", caption: "This is the part of the route where conversation stops and everyone just watches their feet. Worth every careful step.", image: img("climbing-the-scramble.jpg"), date: "2026.06.09", likes: 1108, views: 6201, comments: 89, tags: ["scrambling", "climbing", "ridge"], size: "lg" },
-  { id: "7", category: "architecture", title: "Looking Straight Up", caption: "Found the one spot where the ribs of the roof line up with the palm trees below. Stood there rotating my phone for way too long.", image: img("architecture-looking-up.jpg"), date: "2026.06.07", likes: 892, views: 4511, comments: 54, tags: ["architecture", "symmetry", "travel"], size: "wide" },
-  { id: "8", category: "hiking", title: "Miles Underfoot", caption: "The path just keeps unfurling ahead of you on days like this. Legs tired, head completely clear.", image: img("hiking-miles-underfoot.jpg"), date: "2026.06.05", likes: 678, views: 3241, comments: 31, tags: ["hiking", "trail", "mountains"], size: "md" },
-  { id: "9", category: "photography", title: "The Line Up the Mountain", caption: "Watched the little train work its way up the slope for a good ten minutes before I even lifted the camera.", image: img("photography-mountain-railway.jpg"), date: "2026.06.03", likes: 504, views: 2088, comments: 17, tags: ["landscape", "railway", "mountains"], size: "tall" },
-  { id: "10", category: "watches", title: "Case and Bracelet", caption: "Laid it out on the desk for five minutes to get the light right before it went straight back on. No regrets about the detour.", image: img("watches-on-the-wrist.jpg"), date: "2026.05.30", likes: 445, views: 1823, comments: 12, tags: ["watches", "flatlay", "watchphotography"], size: "sm" },
-  { id: "11", category: "hiking", title: "Early Start", caption: "Left before sunrise to beat the crowds to the summit. Cold hands, warm light, absolutely no regrets.", image: img("hiking-early-start.jpg"), date: "2026.05.28", likes: 769, views: 3402, comments: 44, tags: ["hiking", "sunrise", "mountains"], size: "md" },
-  { id: "12", category: "architecture", title: "Old Stone", caption: "Wandered off from the main square and found this archway tucked between two buildings. No plaque, no explanation, just centuries of stone.", image: img("architecture-old-stone.jpg"), date: "2026.05.25", likes: 398, views: 1744, comments: 15, tags: ["architecture", "travel", "stonework"], size: "sm" },
-  { id: "13", category: "cars", title: "Parked Up", caption: "Spotted this one sitting outside completely unattended, which felt almost rude. Walked around it twice before taking the shot.", image: img("cars-parked-up.jpg"), date: "2026.05.22", likes: 921, views: 4788, comments: 58, tags: ["porsche", "carspotting", "carphotography"], size: "lg" },
-  { id: "14", category: "cars", title: "A Different Kind of Classic", caption: "The newer cars get all the attention at these meets, but this one had a small crowd of its own the whole afternoon.", image: img("cars-different-classic.jpg"), date: "2026.05.20", likes: 543, views: 2312, comments: 26, tags: ["classiccars", "carspotting", "mercedes"], size: "wide" },
-  { id: "15", category: "climbing", title: "Last Push", caption: "That final stretch before the summit always looks shorter than it is. Told myself 'just one more rise' about four times.", image: img("climbing-last-push.jpg"), date: "2026.05.17", likes: 832, views: 4001, comments: 37, tags: ["summit", "climbing", "alpine"], size: "md" },
-  { id: "16", category: "hiking", title: "Downhill Kind of Day", caption: "The descent always feels like its own reward after a climb like that. Tired legs, quiet mind, golden light the whole way down.", image: img("hiking-downhill.jpg"), date: "2026.05.14", likes: 612, views: 2874, comments: 21, tags: ["hiking", "descent", "mountains"], size: "sm" },
-  { id: "17", category: "nature", title: "Field of Green", caption: "There's a particular shade of green after weeks of rain that shows up in these hills and nowhere else I've photographed.", image: img("nature-field-of-green.jpg"), date: "2026.05.11", likes: 487, views: 2103, comments: 18, tags: ["wales", "nature", "hillside"], size: "sm" },
-  { id: "18", category: "photography", title: "Green Valleys, Blue Sky", caption: "The conditions lined up for about twenty minutes total. I spent all twenty of them right here.", image: img("photography-green-valleys.jpg"), date: "2026.05.08", likes: 703, views: 3128, comments: 39, tags: ["landscape", "mountains", "photography"], size: "md" },
+  { id: "1", category: "photography", title: "Ridge Line, Snowdonia", caption: "Broke through the cloud and the whole valley just opened up. Photos never quite get the scale right, but this one comes close.", image: img("photography-ridge-line.jpg"), date: "2026.06.20", tags: ["snowdonia", "landscape", "goldenhour"], size: "lg" },
+  { id: "2", category: "cars", title: "Rear Three-Quarter", caption: "Caught it tucked into the corner of the car park, low light doing all the work. Some shapes just don't need help.", image: img("cars-ferrari-rear.jpg"), date: "2026.06.18", tags: ["ferrari", "carspotting", "carphotography"], size: "tall" },
+  { id: "3", category: "watches", title: "Unboxing Day", caption: "Still can't get over how heavy the bracelet feels the first time. Some purchases you remember down to the smell of the box.", image: img("watches-unboxing.jpg"), date: "2026.06.15", tags: ["watches", "wristcheck", "horology"], size: "sm" },
+  { id: "4", category: "architecture", title: "Concrete and Sky", caption: "Valencia does this thing where the buildings look like they're mid-motion. Spent an hour just walking around this one looking for angles.", image: img("architecture-concrete-sky.jpg"), date: "2026.06.14", tags: ["architecture", "valencia", "calatrava"], size: "md" },
+  { id: "5", category: "nature", title: "That Colour Isn't Filtered", caption: "People assume I boosted the saturation. I didn't. The lake really is that colour, and it's somehow even better in person.", image: img("nature-turquoise-lake.jpg"), date: "2026.06.11", tags: ["lake", "nature", "wales"], size: "sm" },
+  { id: "6", category: "climbing", title: "The Scramble", caption: "This is the part of the route where conversation stops and everyone just watches their feet. Worth every careful step.", image: img("climbing-the-scramble.jpg"), date: "2026.06.09", tags: ["scrambling", "climbing", "ridge"], size: "lg" },
+  { id: "7", category: "architecture", title: "Looking Straight Up", caption: "Found the one spot where the ribs of the roof line up with the palm trees below. Stood there rotating my phone for way too long.", image: img("architecture-looking-up.jpg"), date: "2026.06.07", tags: ["architecture", "symmetry", "travel"], size: "wide" },
+  { id: "8", category: "hiking", title: "Miles Underfoot", caption: "The path just keeps unfurling ahead of you on days like this. Legs tired, head completely clear.", image: img("hiking-miles-underfoot.jpg"), date: "2026.06.05", tags: ["hiking", "trail", "mountains"], size: "md" },
+  { id: "9", category: "photography", title: "The Line Up the Mountain", caption: "Watched the little train work its way up the slope for a good ten minutes before I even lifted the camera.", image: img("photography-mountain-railway.jpg"), date: "2026.06.03", tags: ["landscape", "railway", "mountains"], size: "tall" },
+  { id: "10", category: "watches", title: "Case and Bracelet", caption: "Laid it out on the desk for five minutes to get the light right before it went straight back on. No regrets about the detour.", image: img("watches-on-the-wrist.jpg"), date: "2026.05.30", tags: ["watches", "flatlay", "watchphotography"], size: "sm" },
+  { id: "11", category: "hiking", title: "Early Start", caption: "Left before sunrise to beat the crowds to the summit. Cold hands, warm light, absolutely no regrets.", image: img("hiking-early-start.jpg"), date: "2026.05.28", tags: ["hiking", "sunrise", "mountains"], size: "md" },
+  { id: "12", category: "architecture", title: "Old Stone", caption: "Wandered off from the main square and found this archway tucked between two buildings. No plaque, no explanation, just centuries of stone.", image: img("architecture-old-stone.jpg"), date: "2026.05.25", tags: ["architecture", "travel", "stonework"], size: "sm" },
+  { id: "13", category: "cars", title: "Parked Up", caption: "Spotted this one sitting outside completely unattended, which felt almost rude. Walked around it twice before taking the shot.", image: img("cars-parked-up.jpg"), date: "2026.05.22", tags: ["porsche", "carspotting", "carphotography"], size: "lg" },
+  { id: "14", category: "cars", title: "A Different Kind of Classic", caption: "The newer cars get all the attention at these meets, but this one had a small crowd of its own the whole afternoon.", image: img("cars-different-classic.jpg"), date: "2026.05.20", tags: ["classiccars", "carspotting", "mercedes"], size: "wide" },
+  { id: "15", category: "climbing", title: "Last Push", caption: "That final stretch before the summit always looks shorter than it is. Told myself 'just one more rise' about four times.", image: img("climbing-last-push.jpg"), date: "2026.05.17", tags: ["summit", "climbing", "alpine"], size: "md" },
+  { id: "16", category: "hiking", title: "Downhill Kind of Day", caption: "The descent always feels like its own reward after a climb like that. Tired legs, quiet mind, golden light the whole way down.", image: img("hiking-downhill.jpg"), date: "2026.05.14", tags: ["hiking", "descent", "mountains"], size: "sm" },
+  { id: "17", category: "nature", title: "Field of Green", caption: "There's a particular shade of green after weeks of rain that shows up in these hills and nowhere else I've photographed.", image: img("nature-field-of-green.jpg"), date: "2026.05.11", tags: ["wales", "nature", "hillside"], size: "sm" },
+  { id: "18", category: "photography", title: "Green Valleys, Blue Sky", caption: "The conditions lined up for about twenty minutes total. I spent all twenty of them right here.", image: img("photography-green-valleys.jpg"), date: "2026.05.08", tags: ["landscape", "mountains", "photography"], size: "md" },
 ];
-
-const formatNum = (n) => (n >= 1000 ? `${(n / 1000).toFixed(1)}K` : `${n}`);
 
 /* ═══════════════════════ State ═══════════════════════ */
 
 let filter = "all";
-const liked = new Set();
 
 /* ═══════════════════════ Nav rendering ═══════════════════════ */
 
@@ -147,8 +144,6 @@ function renderMarquee() {
 /* ═══════════════════════ Post card ═══════════════════════ */
 
 function postCardHTML(post) {
-  const isLiked = liked.has(post.id);
-  const likeCount = formatNum(post.likes + (isLiked ? 1 : 0));
   return `
     <article class="post-card size-${post.size}" data-id="${post.id}">
       <div class="post-meta">
@@ -163,11 +158,6 @@ function postCardHTML(post) {
       <div class="post-body">
         <h3 class="post-title">${post.title}</h3>
         <p class="post-caption">${post.caption}</p>
-        <div class="post-stats">
-          <button class="post-like${isLiked ? " liked" : ""}" data-like="${post.id}">&#9825; ${likeCount}</button>
-          <span class="post-comments">&#128172; ${post.comments}</span>
-          <span class="post-views">&#128065; ${formatNum(post.views)}</span>
-        </div>
       </div>
     </article>
   `;
@@ -183,14 +173,6 @@ function renderFeed() {
 
   grid.querySelectorAll(".post-card").forEach((card) => {
     card.addEventListener("click", () => openLightbox(card.dataset.id));
-  });
-  grid.querySelectorAll("[data-like]").forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const id = btn.dataset.like;
-      if (liked.has(id)) liked.delete(id); else liked.add(id);
-      renderFeed();
-    });
   });
 
   document.getElementById("feedFilterLabel").textContent =
@@ -234,9 +216,6 @@ function openLightbox(id) {
   document.getElementById("lbTitle").textContent = post.title;
   document.getElementById("lbCaption").textContent = post.caption;
   document.getElementById("lbTags").innerHTML = post.tags.map((t) => `<span>#${t}</span>`).join("");
-  document.getElementById("lbLikes").textContent = formatNum(post.likes + (liked.has(post.id) ? 1 : 0));
-  document.getElementById("lbComments").textContent = post.comments;
-  document.getElementById("lbViews").textContent = formatNum(post.views);
 
   document.getElementById("lightbox").hidden = false;
   document.body.style.overflow = "hidden";
