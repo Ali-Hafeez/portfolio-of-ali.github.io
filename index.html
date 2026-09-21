@@ -11,7 +11,7 @@
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@500;600;700;800;900&family=Archivo:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rajdhani:wght@400;500;600;700&family=Archivo:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <meta name="theme-color" content="#ece3d1" />
@@ -55,15 +55,17 @@
       </div>
 
       <div class="hero-body">
-        <div class="hero-kicker">EXPLORER &mdash; ENGINEER &mdash; COLLECTOR</div>
+        <div class="hero-kicker">CLOUD &amp; FULL-STACK ENGINEER &mdash; LONDON</div>
         <h1 class="hero-heading">
           My whole<br>
           <span class="outline">world,</span> <span class="neon-fill">filed.</span>
         </h1>
         <p class="hero-copy">
-          Not a blog. Not a r&eacute;sum&eacute;. A raw index of everything I shoot, drive, wear,
-          build, and climb &mdash; filed like a stack of prints and receipts on a very
-          overloaded desk.
+          I'm Ali &mdash; I build and self-host my own systems end to end, from the
+          infrastructure up. Not a template. Not a r&eacute;sum&eacute; PDF pretending to be a
+          website. A raw index of everything I shoot, drive, wear, build, and climb &mdash;
+          filed like a stack of prints and receipts on a very overloaded desk. The engineer
+          and the person are the same feed.
         </p>
       </div>
 
@@ -71,6 +73,8 @@
         <div class="hero-marquee" id="heroMarquee"></div>
       </div>
     </section>
+
+    <div class="section-tear section-tear--paper" aria-hidden="true"></div>
 
     <!-- ══════════════ FEED ══════════════ -->
     <section class="feed" id="feed">
@@ -105,8 +109,9 @@
           <h2 class="pro-h2">Engineer<br><span class="outline">for hire</span></h2>
           <p class="pro-lede">
             Cloud infrastructure, DevOps, and full-stack &mdash; shaped by roles across
-            government IT, fintech, and education. Same person behind the feed
-            above &mdash; this is the part with the invoices attached.
+            government IT, fintech, and education, and proven on systems I run myself,
+            end to end. Same person behind the feed above &mdash; this is the part with
+            the invoices attached.
           </p>
         </div>
 
@@ -146,8 +151,19 @@
                 <p class="exp-desc">Diagnosed a faulty CCTV system through methodical fault isolation, correctly identifying the compute box (not the drive) as root cause and saving an unnecessary replacement. Independently planned and installed structured network cabling with verified end-to-end connectivity.</p>
               </div>
             </div>
-            <div class="exp-row exp-row-last">
+            <div class="exp-row">
               <span class="exp-n neon">04</span>
+              <div>
+                <div class="exp-top">
+                  <span class="exp-role">Volunteer &mdash; Media &amp; Content Creation</span>
+                  <span class="exp-period">DEC 2024&mdash;PRESENT</span>
+                </div>
+                <div class="exp-company neon">@ Community Organisation</div>
+                <p class="exp-desc">Shoot, edit, and produce social and multimedia content for a community organisation &mdash; the same photography and video instincts behind the feed on this site, put to use for someone else's audience.</p>
+              </div>
+            </div>
+            <div class="exp-row exp-row-last">
+              <span class="exp-n neon">05</span>
               <div>
                 <div class="exp-top">
                   <span class="exp-role">Computer Science Tutor (1-on-1)</span>
@@ -168,8 +184,10 @@
               <div class="stack-item">Python / Bash</div>
               <div class="stack-item">GitLab / GH Actions</div>
               <div class="stack-item">Cisco / Networking</div>
-              <div class="stack-item stack-nb">Linux / Win Server</div>
-              <div class="stack-item stack-nb">React / Vite</div>
+              <div class="stack-item">Linux / Win Server</div>
+              <div class="stack-item">Next.js / React</div>
+              <div class="stack-item stack-nb">PostgreSQL / Prisma</div>
+              <div class="stack-item stack-nb">Tailscale / Caddy</div>
             </div>
             <div class="kicker">[ C ] CONTACT</div>
             <div class="contact-list">
@@ -193,20 +211,25 @@
           <div class="pro-proj">
             <div class="kicker">[ D ] SELECTED PROJECTS</div>
             <div class="proj-row">
-              <a href="#" class="proj-card">
+              <a href="https://logbook.click" target="_blank" rel="noopener" class="proj-card">
+                <div class="proj-top"><span>Logbook</span><span class="icon-arrow" aria-hidden="true"></span></div>
+                <p>A self-hosted personal life OS running on my own hardware &mdash; habit and prayer tracking with push notifications, spaced-repetition language learning, an AES-256-GCM encrypted password vault, and a udev rule that auto-imports Garmin data the second the watch is plugged in. Live, invite-only, with its own self-hosted CI/CD.</p>
+                <span class="proj-tag">NEXT.JS / SELF-HOSTED</span>
+              </a>
+              <a href="https://github.com/Ali-Hafeez/IndividualProject2026" target="_blank" rel="noopener" class="proj-card">
                 <div class="proj-top"><span>ACRP</span><span class="icon-arrow" aria-hidden="true"></span></div>
-                <p>Air-gapped, on-prem Chaos Engineering platform on Cisco switches with a fully self-hosted GitLab CI/CD pipeline and a local Llama 3 8B model auto-generating root cause analysis for Layer 1/2 failures. Final year dissertation, 81.3%.</p>
+                <p>Air-gapped, on-prem Chaos Engineering platform on real Cisco switches with a fully self-hosted GitLab CI/CD pipeline and a local Llama 3 8B model auto-generating root cause analysis for Layer 1/2 failures. Final year dissertation &mdash; 81.3%.</p>
                 <span class="proj-tag">GITLAB CI / LLAMA 3</span>
+              </a>
+              <a href="https://github.com/Ali-Hafeez/jobsheet-app" target="_blank" rel="noopener" class="proj-card">
+                <div class="proj-top"><span>JobSheetApp</span><span class="icon-arrow" aria-hidden="true"></span></div>
+                <p>A personal career CRM &mdash; drag-and-drop Kanban board for tracking job applications through every stage, with an analytics dashboard. Runs in Docker, reachable remotely over my own Tailscale mesh, no public exposure.</p>
+                <span class="proj-tag">NEXT.JS / DOCKER</span>
               </a>
               <a href="#" class="proj-card">
                 <div class="proj-top"><span>Pulse</span><span class="icon-arrow" aria-hidden="true"></span></div>
                 <p>Peer-to-peer messaging app in Python built on Twisted and raw sockets &mdash; low-level async networking without framework abstractions.</p>
                 <span class="proj-tag">PYTHON / SOCKETS</span>
-              </a>
-              <a href="#" class="proj-card">
-                <div class="proj-top"><span>Kairo London</span><span class="icon-arrow" aria-hidden="true"></span></div>
-                <p>Responsive, pixel-perfect UI components for a live e-commerce platform (kairo.london), translating high-fidelity mockups into production-ready code. Freelance contribution.</p>
-                <span class="proj-tag">REACT / FIGMA</span>
               </a>
             </div>
           </div>
@@ -217,13 +240,14 @@
               <div class="edu-col">
                 <div class="edu-degree">BSc (Hons) Computer Science <span class="neon">with Placement</span></div>
                 <div class="edu-school">City St George's, University of London &mdash; 2022&ndash;2026</div>
-                <p class="edu-detail">Class II Upper Division (2:1), 68.7% overall. Final year: Individual Project 81.3%, Theory of Computation 81.8%, Data Visualisation 80%. Dissertation: Automated Chaos Resilience Platform.</p>
+                <p class="edu-detail">Class II Upper Division (2:1), 68.7% overall &mdash; graduated June 2026. Final year: Individual Project 81.3%, Theory of Computation 81.8%, Data Visualisation 80%. Dissertation: Automated Chaos Resilience Platform.</p>
               </div>
               <div class="edu-col edu-certs">
                 <span>Microsoft Azure Fundamentals (AZ-900)</span>
                 <span>AWS Cloud Practitioner</span>
                 <span>Fundamentals of DevOps &mdash; KodeKloud</span>
                 <span>12 Factor App &mdash; KodeKloud</span>
+                <span>OverTheWire Bandit &mdash; All 34 Levels</span>
                 <span>ITIL v4 &mdash; LinkedIn Learning</span>
               </div>
             </div>
@@ -231,6 +255,8 @@
         </div>
       </div>
     </section>
+
+    <div class="section-tear section-tear--ink" aria-hidden="true"></div>
 
     <!-- ══════════════ FOOTER ══════════════ -->
     <footer class="site-footer">
