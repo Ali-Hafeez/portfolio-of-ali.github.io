@@ -15,19 +15,22 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <meta name="theme-color" content="#ece3d1" />
+  <script data-goatcounter="https://ali-hafeez.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
+
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <!-- ══════════════ DESKTOP LEFT RAIL ══════════════ -->
   <aside class="side-nav" id="sideNav">
     <button class="side-identity" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-      <div class="side-eyebrow">● SOLO FEED / EST. 2026</div>
+      <div class="side-eyebrow"><span class="blink">●</span> LIVE FEED / EST. 2026</div>
       <div class="side-name">ALI<br>HAFEEZ</div>
     </button>
 
-    <div class="side-index">
-      <div class="side-index-label">[ INDEX — FILTER FEED ]</div>
-      <div id="sideFilterList"></div>
+    <div class="side-index side-timeline" id="sideTimelineScroll">
+      <div class="side-index-label">[ TIMELINE — NEWEST FIRST ]</div>
+      <div id="sideTimeline"></div>
     </div>
 
     <div class="side-footer">
@@ -55,6 +58,7 @@
       </div>
 
       <div class="hero-body">
+        <div class="hero-stamp" aria-hidden="true">UNFILTERED<small>NO PRESETS / NO EDITS</small></div>
         <div class="hero-kicker">CLOUD &amp; FULL-STACK ENGINEER &mdash; LONDON</div>
         <h1 class="hero-heading">
           My whole<br>
@@ -72,6 +76,9 @@
       <div class="hero-marquee-wrap">
         <div class="hero-marquee" id="heroMarquee"></div>
       </div>
+      <div class="hero-tape" aria-hidden="true">
+        <div class="hero-tape-track" id="heroTape"></div>
+      </div>
     </section>
 
     <div class="section-tear section-tear--paper" aria-hidden="true"></div>
@@ -81,8 +88,8 @@
       <div class="feed-title-bar">
         <h2 class="feed-h2">The Feed</h2>
         <div class="feed-status">
-          <div class="neon" id="feedFilterLabel">&#9656; ALL CATEGORIES</div>
-          <div class="feed-count" id="feedCount">18 / 18 ENTRIES</div>
+          <div class="neon" id="feedPosLabel">&#9656; NEWEST FIRST</div>
+          <div class="feed-count" id="feedCount">25 ENTRIES / NO FILTER</div>
         </div>
       </div>
 
@@ -92,8 +99,8 @@
       </div>
 
       <div class="feed-body">
-        <div class="feed-flow" id="feedGrid"></div>
-        <div class="feed-empty" id="feedEmpty" hidden>NO ENTRIES IN THIS CATEGORY.</div>
+        <div class="feed-months" id="feedGrid"></div>
+        <div class="feed-end">&#9660; START OF FILE &mdash; <span id="feedStart"></span></div>
       </div>
     </section>
 
@@ -282,16 +289,16 @@
     <div class="mobile-overlay" id="mobileOverlay"></div>
     <div class="mobile-drawer" id="mobileDrawer">
       <div class="mobile-drawer-head">
-        <span>[ FILTER FEED ]</span>
+        <span>[ TIMELINE ]</span>
         <button id="mobileClose">CLOSE &#10005;</button>
       </div>
       <a class="mobile-drawer-item mobile-drawer-write" href="blog.html">WRITING &rarr;</a>
-      <div id="mobileFilterList"></div>
+      <div class="mobile-timeline" id="mobileTimeline"></div>
     </div>
     <div class="mobile-bar">
       <button class="ctrl-btn" id="mobileFilterToggle">
-        <span class="ctrl-label">FILTER</span>
-        <span class="ctrl-value" id="mobileFilterValue">Everything</span>
+        <span class="ctrl-label"><span class="blink">●</span> TIMELINE</span>
+        <span class="ctrl-value" id="mobileTimelineValue">Start here</span>
       </button>
       <button class="ctrl-btn ctrl-work" onclick="goto('professional')">WORK &rarr;</button>
     </div>

@@ -54,9 +54,8 @@ const CATEGORIES = [
 ];
 const CATEGORY_LABEL = Object.fromEntries(CATEGORIES.map((c) => [c.key, c.label]));
 const CATEGORY_CODE = Object.fromEntries(CATEGORIES.map((c) => [c.key, c.code]));
-const INDEX = [{ key: "all", label: "Everything", code: "00" }, ...CATEGORIES.map((c, i) => ({
-  key: c.key, label: c.label, code: String(i + 1).padStart(2, "0"),
-}))];
+const MONTHS = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+const MONTHS_LONG = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 const img = (name) => `media/photos/${name}`;
 
@@ -88,41 +87,130 @@ const POSTS = [
   { id: "25", category: "photography", title: "Peak, Hazy", caption: "The haze rolled in halfway up and never really left. Made the whole ridge look like it was cut out of paper.", image: img("photography-hazy-peak.jpg"), date: "2026.04.24", tags: ["landscape", "mountains", "haze"], size: "tall" },
 ];
 
-/* ═══════════════════════ State ═══════════════════════ */
+/* ═══════════════════════ Timeline ═══════════════════════ */
 
-let filter = "all";
-
-/* ═══════════════════════ Nav rendering ═══════════════════════ */
-
-function renderFilterLists() {
-  const sideList = document.getElementById("sideFilterList");
-  const mobileList = document.getElementById("mobileFilterList");
-  sideList.innerHTML = "";
-  mobileList.innerHTML = "";
-
-  INDEX.forEach((item) => {
-    const sideBtn = document.createElement("button");
-    sideBtn.className = "side-link" + (filter === item.key ? " active" : "");
-    sideBtn.innerHTML = `<span class="side-link-code">${item.code}</span><span class="side-link-label">${item.label}</span>`;
-    sideBtn.onclick = () => setFilter(item.key);
-    sideList.appendChild(sideBtn);
-
-    const mobBtn = document.createElement("button");
-    mobBtn.className = "mobile-link" + (filter === item.key ? " active" : "");
-    mobBtn.innerHTML = `<span class="mobile-link-code">${item.code}</span><span class="mobile-link-label">${item.label}</span>`;
-    mobBtn.onclick = () => { setFilter(item.key); closeMobileDrawer(); };
-    mobileList.appendChild(mobBtn);
+// Posts grouped by month, newest first: [{ key: "2026.06", posts: [...] }]
+function monthGroups() {
+  const groups = [];
+  [...POSTS].sort((x, y) => y.date.localeCompare(x.date)).forEach((p) => {
+    const key = p.date.slice(0, 7);
+    let g = groups[groups.length - 1];
+    if (!g || g.key !== key) groups.push(g = { key, posts: [] });
+    g.posts.push(p);
   });
-
-  document.getElementById("mobileFilterValue").textContent =
-    INDEX.find((i) => i.key === filter)?.label ?? "Everything";
+  return groups;
 }
 
-function setFilter(key) {
-  filter = key;
-  renderFilterLists();
-  renderFeed();
-  goto("feed");
+const monthId = (key) => "m-" + key.replace(".", "-");
+const monthShort = (key) => MONTHS[+key.slice(5, 7) - 1];
+const monthLong = (key) => MONTHS_LONG[+key.slice(5, 7) - 1];
+
+function timelineHTML() {
+  const groups = monthGroups();
+  const latest = groups[0]?.posts[0]?.date ?? "";
+  let n = POSTS.length;
+  return `
+    <div class="tl">
+      <div class="tl-rail" aria-hidden="true"><div class="tl-fill"></div></div>
+      <div class="tl-now"><span class="tl-now-dot"></span>NOW &mdash; ${latest}</div>
+      ${groups.map((g) => `
+        <div class="tl-month">
+          <button class="tl-month-head" data-month="${g.key}">
+            <span class="tl-month-name">${monthShort(g.key)}</span>
+            <span class="tl-month-year">${g.key.slice(0, 4)}</span>
+            <span class="tl-month-count">${String(g.posts.length).padStart(2, "0")} ENTRIES</span>
+          </button>
+          ${g.posts.map((p) => `
+            <button class="tl-entry" data-id="${p.id}">
+              <span class="tl-node" aria-hidden="true"></span>
+              <span class="tl-day">${p.date.slice(8)}</span>
+              <span class="tl-title">${p.title}</span>
+              <span class="tl-code">${String(n--).padStart(2, "0")}</span>
+            </button>
+          `).join("")}
+        </div>
+      `).join("")}
+      <div class="tl-origin">&#9660; FILE OPENED &mdash; ${groups[groups.length - 1]?.posts.slice(-1)[0]?.date ?? ""}</div>
+    </div>
+  `;
+}
+
+function renderTimelines() {
+  ["sideTimeline", "mobileTimeline"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML = timelineHTML();
+    el.querySelectorAll(".tl-entry").forEach((btn) => {
+      btn.addEventListener("click", () => { closeMobileDrawer(); jumpToPost(btn.dataset.id); });
+    });
+    el.querySelectorAll(".tl-month-head").forEach((btn) => {
+      btn.addEventListener("click", () => { closeMobileDrawer(); goto(monthId(btn.dataset.month)); });
+    });
+  });
+}
+
+function jumpToPost(id) {
+  const item = document.getElementById("post-" + id);
+  if (!item) return;
+  item.classList.add("in");
+  const y = item.getBoundingClientRect().top + window.scrollY - window.innerHeight * 0.18;
+  window.scrollTo({ top: y, behavior: "smooth" });
+  item.classList.remove("hit");
+  void item.offsetWidth;
+  item.classList.add("hit");
+  pinned = id;
+  activeId = undefined;
+  syncTimeline();
+}
+
+let activeId = null;
+let pinned = null; // a clicked entry stays active until the user scrolls by hand
+
+// Scroll-spy: the active entry is the last card whose top has crossed 40% of the viewport.
+function syncTimeline() {
+  const doc = document.documentElement;
+  const bar = document.getElementById("scrollProgress");
+  if (bar) bar.style.transform = `scaleX(${doc.scrollTop / Math.max(1, doc.scrollHeight - doc.clientHeight)})`;
+
+  const items = document.querySelectorAll(".feed-item");
+  if (!items.length) return;
+  const line = window.innerHeight * 0.4;
+  let best = null, bestTop = -Infinity;
+  items.forEach((it) => {
+    const top = it.getBoundingClientRect().top;
+    if (top < line && top >= bestTop) { bestTop = top; best = it; }
+  });
+  const feedBottom = document.getElementById("feed").getBoundingClientRect().bottom;
+  let id = best && feedBottom > line ? best.dataset.id : (best ? "end" : null);
+  if (pinned) id = pinned;
+  if (id === activeId) return;
+  activeId = id;
+
+  const post = POSTS.find((p) => p.id === id);
+  document.querySelectorAll(".tl").forEach((tl) => {
+    tl.classList.toggle("done", id === "end");
+    tl.querySelectorAll(".tl-entry").forEach((e) => e.classList.toggle("active", e.dataset.id === id));
+    tl.querySelectorAll(".tl-month-head").forEach((h) => h.classList.toggle("active", post && h.dataset.month === post.date.slice(0, 7)));
+    const fill = tl.querySelector(".tl-fill");
+    const act = tl.querySelector(".tl-entry.active .tl-node");
+    if (id === "end") fill.style.height = "100%";
+    else if (act) fill.style.height = (act.getBoundingClientRect().top - tl.getBoundingClientRect().top + act.offsetHeight / 2) + "px";
+    else fill.style.height = "0px";
+  });
+
+  // Keep the active entry in view inside the desktop rail without moving the page
+  const scroller = document.getElementById("sideTimelineScroll");
+  const act = scroller?.querySelector(".tl-entry.active");
+  if (scroller && act) {
+    const target = act.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop - scroller.clientHeight * 0.4;
+    scroller.scrollTo({ top: target, behavior: "smooth" });
+  }
+
+  const label = post ? `${monthShort(post.date.slice(0, 7))} ${post.date.slice(0, 4)} — ${post.title}` : (id === "end" ? "End of feed" : "Start here");
+  const mob = document.getElementById("mobileTimelineValue");
+  if (mob) mob.textContent = label;
+  const pos = document.getElementById("feedPosLabel");
+  if (pos) pos.textContent = post ? `▸ NOW VIEWING ${post.date}` : "▸ NEWEST FIRST";
 }
 
 function goto(id) {
@@ -146,6 +234,12 @@ function renderMarquee() {
     });
     wrap.appendChild(repDiv);
   }
+
+  const tape = document.getElementById("heroTape");
+  if (!tape) return;
+  const words = ["Unfiltered", "No presets", "Shot raw", "Filed live", "Zero algorithm", "All of it"];
+  const rep = words.map((w) => `<span>${w}</span><span class="tape-x">&#10006;</span>`).join("");
+  tape.innerHTML = `<div class="hero-tape-rep">${rep}</div><div class="hero-tape-rep" aria-hidden="true">${rep}</div>`;
 }
 
 /* ═══════════════════════ Post card ═══════════════════════ */
@@ -170,24 +264,46 @@ function postCardHTML(post) {
   `;
 }
 
+// Masonry columns filled round-robin, so cards read in date order left to right
+const COLUMN_QUERIES = [matchMedia("(max-width: 640px)"), matchMedia("(max-width: 1180px)")];
+const columnCount = () => (COLUMN_QUERIES[0].matches ? 1 : COLUMN_QUERIES[1].matches ? 2 : 3);
+
+function columnsHTML(posts) {
+  const cols = Array.from({ length: columnCount() }, () => []);
+  posts.forEach((p, i) => cols[i % cols.length].push(p));
+  return cols.map((c) => `
+    <div class="feed-col">
+      ${c.map((p) => `<div class="feed-item" id="post-${p.id}" data-id="${p.id}">${postCardHTML(p)}</div>`).join("")}
+    </div>
+  `).join("");
+}
+
 function renderFeed() {
-  const posts = filter === "all" ? POSTS : POSTS.filter((p) => p.category === filter);
-  const grid = document.getElementById("feedGrid");
-  const empty = document.getElementById("feedEmpty");
+  const groups = monthGroups();
+  document.getElementById("feedGrid").innerHTML = groups.map((g) => `
+    <section class="feed-month" id="${monthId(g.key)}">
+      <header class="feed-month-head">
+        <h3 class="feed-month-name">${monthLong(g.key)} <span class="outline">'${g.key.slice(2, 4)}</span></h3>
+        <span class="feed-month-stamp">${String(g.posts.length).padStart(2, "0")} ENTRIES</span>
+      </header>
+      <div class="feed-flow">${columnsHTML(g.posts)}</div>
+    </section>
+  `).join("");
 
-  grid.innerHTML = posts.map((p) => `<div class="feed-item">${postCardHTML(p)}</div>`).join("");
-  empty.hidden = posts.length !== 0;
-
-  grid.querySelectorAll(".post-card").forEach((card) => {
+  document.querySelectorAll("#feedGrid .post-card").forEach((card) => {
     card.addEventListener("click", () => openLightbox(card.dataset.id));
   });
 
-  document.getElementById("feedFilterLabel").textContent =
-    "▸ " + (filter === "all" ? "ALL CATEGORIES" : CATEGORY_LABEL[filter].toUpperCase());
-  document.getElementById("feedCount").textContent = `${posts.length} / ${POSTS.length} ENTRIES`;
+  document.getElementById("feedCount").textContent = `${POSTS.length} ENTRIES / NO FILTER`;
+  const start = document.getElementById("feedStart");
+  if (start) start.textContent = groups[groups.length - 1]?.posts.slice(-1)[0]?.date ?? "";
 
-  const carWrap = document.getElementById("feedCarouselWrap");
-  carWrap.classList.toggle("hidden", filter !== "all");
+  // Cards slam in as they enter the viewport
+  document.documentElement.classList.add("anim");
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll(".feed-item").forEach((it) => io.observe(it));
 }
 
 function renderCarousel() {
@@ -271,9 +387,23 @@ document.addEventListener("DOMContentLoaded", () => {
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   if (document.getElementById("heroMarquee")) renderMarquee();
-  if (document.getElementById("sideFilterList")) renderFilterLists();
+  if (document.getElementById("sideTimeline")) renderTimelines();
   if (document.getElementById("feedCarousel")) renderCarousel();
-  if (document.getElementById("feedGrid")) renderFeed();
+  if (document.getElementById("feedGrid")) {
+    renderFeed();
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => { ticking = false; syncTimeline(); });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", () => { activeId = undefined; onScroll(); });
+    COLUMN_QUERIES.forEach((q) => q.addEventListener("change", () => { renderFeed(); activeId = undefined; onScroll(); }));
+    const unpin = () => { if (pinned) { pinned = null; onScroll(); } };
+    ["wheel", "touchmove", "keydown"].forEach((ev) => window.addEventListener(ev, unpin, { passive: true }));
+    syncTimeline();
+  }
   if (document.getElementById("blogListingGrid")) renderBlogList("blogListingGrid");
 
   document.getElementById("mobileFilterToggle")?.addEventListener("click", () => {
