@@ -22,7 +22,7 @@ function setTheme(theme) {
 function updateThemeToggle() {
   const isDark = currentTheme() === "dark";
   const meta = document.querySelector('meta[name="theme-color"]');
-  if (meta) meta.setAttribute("content", isDark ? "#14110b" : "#ece3d1");
+  if (meta) meta.setAttribute("content", isDark ? "#000000" : "#e4ff1a");
   const btn = document.getElementById("themeToggle");
   if (!btn) return;
   btn.textContent = isDark ? "☀ LIGHT" : "☾ DARK";
